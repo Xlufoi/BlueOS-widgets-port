@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS halo clock, no card: light text for dark wallpapers. The provider picks it from the wallpaper colors. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingHorizontal="8dp">
+
+    <!-- The halo over the minutes, like over "OS" in the logo; the top margin leaves it room -->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextClock
+            android:id="@+id/blueos_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="blueos-clock"
+            android:fontVariationSettings="'wght' 600"
+            android:format12Hour="h"
+            android:format24Hour="HH"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/blueos_color_on_surface_dark"
+            android:textSize="48sp" />
+
+        <TextView
+            android:id="@+id/blueos_colon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/blueos_hours"
+            android:layout_toEndOf="@id/blueos_hours"
+            android:fontFamily="blueos-clock"
+            android:fontVariationSettings="'wght' 600"
+            android:includeFontPadding="false"
+            android:text=":"
+            android:textColor="@color/blueos_color_on_surface_dark"
+            android:textSize="48sp" />
+
+        <TextClock
+            android:id="@+id/blueos_minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/blueos_hours"
+            android:layout_toEndOf="@id/blueos_colon"
+            android:fontFamily="blueos-clock"
+            android:fontVariationSettings="'wght' 600"
+            android:format12Hour="mm"
+            android:format24Hour="mm"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/blueos_color_primary_dark"
+            android:textSize="48sp" />
+
+        <ImageView
+            android:id="@+id/blueos_halo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/blueos_minutes"
+            android:layout_alignStart="@id/blueos_minutes"
+            android:layout_alignEnd="@id/blueos_minutes"
+            android:layout_marginBottom="-3dp"
+            android:contentDescription="@null"
+            android:src="@drawable/blueos_widget_halo"
+            android:tint="@color/blueos_color_primary_dark" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextClock
+            android:id="@+id/blueos_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="google-sans-text"
+            android:singleLine="true"
+            android:textColor="@color/blueos_color_on_surface_variant_dark"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/blueos_alarm_icon"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_alarm"
+            android:tint="@color/blueos_color_on_surface_variant_dark" />
+
+        <TextView
+            android:id="@+id/blueos_next_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:fontFamily="google-sans-text"
+            android:singleLine="true"
+            android:textColor="@color/blueos_color_on_surface_variant_dark"
+            android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>

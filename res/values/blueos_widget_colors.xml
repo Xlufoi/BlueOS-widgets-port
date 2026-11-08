@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light theme / Dark text values -->
+    <color name="blueos_color_surface_light">#FFF8F9FA</color>
+    <color name="blueos_color_on_surface_light">#FF1F1F1F</color>
+    <color name="blueos_color_on_surface_variant_light">#FF444746</color>
+    <color name="blueos_color_primary_light">#FF0077D6</color>
+    <color name="blueos_color_primary_container_light">#FFC8E6FF</color>
+    <color name="blueos_color_on_primary_container_light">#FF001E30</color>
+
+    <!-- Dark theme / Light text values -->
+    <color name="blueos_color_surface_dark">#FF131314</color>
+    <color name="blueos_color_on_surface_dark">#FFE3E2E6</color>
+    <color name="blueos_color_on_surface_variant_dark">#FFC4C7C5</color>
+    <color name="blueos_color_primary_dark">#FF53B2FF</color>
+    <color name="blueos_color_primary_container_dark">#FF004B80</color>
+    <color name="blueos_color_on_primary_container_dark">#FFC8E6FF</color>
+
+    <!-- Theme-adaptive aliases (day) -->
+    <color name="blueos_widget_card">#FF000000</color>
+    <color name="blueos_widget_card_highest">#FF131D2D</color>
+    <color name="blueos_widget_on_surface">#FFFFFFFF</color>
+    <color name="blueos_widget_on_surface_variant">#FFA0B0C4</color>
+    <color name="blueos_widget_primary">#FF53B2FF</color>
+    <color name="blueos_widget_on_primary">#FFFFFFFF</color>
+    <color name="blueos_widget_primary_container">#FF000000</color>
+    <color name="blueos_widget_on_primary_container">#FF38BDF8</color>
+</resources>

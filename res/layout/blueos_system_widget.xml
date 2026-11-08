@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blueos_widget_outline"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/blueos_widget_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/blueos_widget_card" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
+
+        <!-- 1. Battery -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@null"
+                android:src="@drawable/blueos_ic_bolt"
+                android:tint="@color/blueos_widget_primary" />
+
+            <TextView
+                android:id="@+id/blueos_sys_batt_pct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="blueos-clock"
+                android:fontVariationSettings="'wght' 600"
+                android:text="85%"
+                android:textColor="@color/blueos_widget_on_surface"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/blueos_sys_batt_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="google-sans-text"
+                android:singleLine="true"
+                android:text="Батарея"
+                android:textColor="@color/blueos_widget_on_surface_variant"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="36dp"
+            android:background="#22FFFFFF" />
+
+        <!-- 2. RAM -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@null"
+                android:src="@drawable/blueos_battery_ring"
+                android:tint="@color/blueos_widget_primary" />
+
+            <TextView
+                android:id="@+id/blueos_sys_ram_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="blueos-clock"
+                android:fontVariationSettings="'wght' 600"
+                android:text="5.2G"
+                android:textColor="@color/blueos_widget_on_surface"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/blueos_sys_ram_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="google-sans-text"
+                android:singleLine="true"
+                android:text="ОЗУ"
+                android:textColor="@color/blueos_widget_on_surface_variant"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="36dp"
+            android:background="#22FFFFFF" />
+
+        <!-- 3. Storage -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@null"
+                android:src="@drawable/blueos_ic_music_note"
+                android:tint="@color/blueos_widget_primary" />
+
+            <TextView
+                android:id="@+id/blueos_sys_disk_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="blueos-clock"
+                android:fontVariationSettings="'wght' 600"
+                android:text="68%"
+                android:textColor="@color/blueos_widget_on_surface"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/blueos_sys_disk_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="google-sans-text"
+                android:singleLine="true"
+                android:text="Память"
+                android:textColor="@color/blueos_widget_on_surface_variant"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

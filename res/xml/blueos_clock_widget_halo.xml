@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS clock widget B (halo, no card) -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/blueos_clock_widget_halo_description"
+    android:initialLayout="@layout/blueos_clock_widget_halo"
+    android:minWidth="180dp"
+    android:minHeight="70dp"
+    android:minResizeWidth="150dp"
+    android:minResizeHeight="70dp"
+    android:previewLayout="@layout/blueos_clock_widget_halo"
+    android:resizeMode="horizontal|vertical"
+    android:targetCellWidth="3"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen" />

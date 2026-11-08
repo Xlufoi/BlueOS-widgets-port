@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.blueos.widgets"
+    android:versionCode="2"
+    android:versionName="2.0">
+
+    <uses-sdk
+        android:minSdkVersion="31"
+        android:targetSdkVersion="34" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/blueos_widget_halo"
+        android:supportsRtl="true">
+
+        <!-- 1. Halo Clock -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSClockWidgetProvider$Halo"
+            android:exported="true"
+            android:label="@string/blueos_clock_widget_halo">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.app.action.NEXT_ALARM_CLOCK_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_clock_widget_halo" />
+        </receiver>
+
+        <!-- 2. Card Clock -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSClockWidgetProvider$Card"
+            android:exported="true"
+            android:label="@string/blueos_clock_widget_card">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.app.action.NEXT_ALARM_CLOCK_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_clock_widget_card" />
+        </receiver>
+
+        <!-- 3. Card Wide Clock -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSClockWidgetProvider$CardWide"
+            android:exported="true"
+            android:label="Часы: широкая карточка">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.app.action.NEXT_ALARM_CLOCK_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_clock_widget_card" />
+        </receiver>
+
+        <!-- 4. Tile Clock -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSClockWidgetProvider$Tile"
+            android:exported="true"
+            android:label="@string/blueos_clock_widget_tile">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_clock_widget_tile" />
+        </receiver>
+
+        <!-- 5. Kivotos Moe Clock -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSClockWidgetProvider$Moe"
+            android:exported="true"
+            android:label="Часы: Kivotos Moe">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.TIME_TICK" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_clock_widget_moe" />
+        </receiver>
+
+        <!-- 6. Date & Schedule Widget -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSDateWidgetProvider"
+            android:exported="true"
+            android:label="@string/blueos_date_widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+                <action android:name="android.intent.action.PROVIDER_CHANGED" />
+                <data android:scheme="content" />
+                <data android:host="com.android.calendar" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_date_widget_info" />
+        </receiver>
+
+        <!-- 6b. Month Grid Calendar Widget -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSCalendarMonthWidgetProvider"
+            android:exported="true"
+            android:label="Календарь: Месячная сетка">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_calendar_month_widget_info" />
+        </receiver>
+
+        <!-- 7. Countdown Widget -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSCountdownWidgetProvider"
+            android:exported="true"
+            android:label="@string/blueos_countdown_widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_countdown_widget_info" />
+        </receiver>
+
+        <activity
+            android:name="org.blueos.widgets.BlueOSCountdownConfigActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <!-- 8. Summary Sensei Widget -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSSummaryWidgetProvider"
+            android:exported="true"
+            android:label="@string/blueos_summary_widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.TIME_SET" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_summary_widget_info" />
+        </receiver>
+
+        <!-- 9. Battery Widgets -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSBatteryWidgetProvider$Small"
+            android:exported="true"
+            android:label="Батарея: 1x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_battery_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSBatteryWidgetProvider$Medium"
+            android:exported="true"
+            android:label="Батарея: 2x2">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_battery_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSBatteryWidgetProvider$Large"
+            android:exported="true"
+            android:label="Батарея: Подробная">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_battery_widget_info" />
+        </receiver>
+
+        <!-- 10. Media Widgets -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSMediaWidgetProvider$Small"
+            android:exported="true"
+            android:label="Плеер: Компактный 2x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_media_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSMediaWidgetProvider$Square"
+            android:exported="true"
+            android:label="Плеер: Квадратный 2x2">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_media_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSMediaWidgetProvider$Wide"
+            android:exported="true"
+            android:label="Плеер: Полоса 4x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_media_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSMediaWidgetProvider$Large"
+            android:exported="true"
+            android:label="Плеер: Большой 4x2">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_media_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSMediaWidgetProvider$Vinyl"
+            android:exported="true"
+            android:label="Плеер: Виниловая пластинка">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_media_widget_vinyl_info" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSMediaWidgetProvider$Cassette"
+            android:exported="true"
+            android:label="@string/blueos_media_cassette">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_media_widget_cassette_info" />
+        </receiver>
+
+        <!-- 12. Equalizer Widgets -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSEqualizerWidgetProvider$Bars"
+            android:exported="true"
+            android:label="@string/blueos_eq_bars">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_eq_bars_info" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSEqualizerWidgetProvider$Ring"
+            android:exported="true"
+            android:label="@string/blueos_eq_ring">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_eq_ring_info" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSEqualizerWidgetProvider$Wave"
+            android:exported="true"
+            android:label="@string/blueos_eq_wave">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_eq_wave_info" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSEqualizerWidgetProvider$Full"
+            android:exported="true"
+            android:label="@string/blueos_eq_full">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_eq_full_info" />
+        </receiver>
+
+        <!-- 13. Photo / Sticker Widgets -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSPhotoWidgetProvider$Small"
+            android:exported="true"
+            android:label="@string/blueos_photo_widget_small">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_photo_widget_small" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSPhotoWidgetProvider$Square"
+            android:exported="true"
+            android:label="@string/blueos_photo_widget_square">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_photo_widget_square" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSPhotoWidgetProvider$Portrait"
+            android:exported="true"
+            android:label="@string/blueos_photo_widget_portrait">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_photo_widget_portrait" />
+        </receiver>
+
+        <receiver
+            android:name="org.blueos.widgets.BlueOSPhotoWidgetProvider$Wide"
+            android:exported="true"
+            android:label="@string/blueos_photo_widget_wide">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_photo_widget_wide" />
+        </receiver>
+
+        <!-- 14. Arona Desktop Pet Widget -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSAronaPetWidgetProvider"
+            android:exported="true"
+            android:label="@string/blueos_widget_arona">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_arona_widget_info" />
+        </receiver>
+
+        <!-- 14b. Plana Desktop Pet Widget -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSPlanaPetWidgetProvider"
+            android:exported="true"
+            android:label="@string/blueos_widget_plana">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_plana_widget_info" />
+        </receiver>
+
+        <!-- 14c. Duo Desktop Pet Widget (Arona & Plana) -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSDuoPetWidgetProvider"
+            android:exported="true"
+            android:label="@string/blueos_widget_duo">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_duo_pet_widget_info" />
+        </receiver>
+
+        <!-- 14d. System Monitor Widget -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSSystemWidgetProvider"
+            android:exported="true"
+            android:label="@string/blueos_widget_system">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/blueos_system_widget_info" />
+        </receiver>
+
+        <activity
+            android:name="org.blueos.widgets.BlueOSPhotoConfigActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="org.blueos.widgets.BlueOSPhotoProvider"
+            android:authorities="org.blueos.widgets.photos"
+            android:exported="true"
+            android:grantUriPermissions="true" />
+
+        <!-- Main Setup & Status Activity -->
+        <activity
+            android:name="org.blueos.widgets.MainActivity"
+            android:label="BlueOS Виджеты"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Media Broadcast Receiver -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSMediaBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.music.metachanged" />
+                <action android:name="com.android.music.playstatechanged" />
+                <action android:name="com.android.music.playbackcomplete" />
+                <action android:name="com.spotify.music.playbackstatechanged" />
+                <action android:name="com.spotify.music.metadatachanged" />
+                <action android:name="com.miui.player.metachanged" />
+                <action android:name="com.miui.player.playbackstatechanged" />
+                <action android:name="com.amazon.mp3.metachanged" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Media Key & Action Receiver -->
+        <receiver
+            android:name="org.blueos.widgets.BlueOSMediaActionReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="org.blueos.widgets.media.PLAY_PAUSE" />
+                <action android:name="org.blueos.widgets.media.PREVIOUS" />
+                <action android:name="org.blueos.widgets.media.NEXT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Media Notification Listener Service -->
+        <service
+            android:name="org.blueos.widgets.BlueOSMediaListenerService"
+            android:label="BlueOS Media Controller"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+    </application>
+</manifest>

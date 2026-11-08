@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS countdown widget: days until a date the user picked, on the accent card -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blueos_widget_outline"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/blueos_widget_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/blueos_widget_card_accent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp">
+
+        <TextView
+            android:id="@+id/blueos_countdown_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.8"
+            android:ellipsize="end"
+            android:fontFamily="google-sans-text"
+            android:maxLines="2"
+            android:textColor="@color/blueos_widget_on_primary_container"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/blueos_countdown_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="blueos-clock"
+            android:fontVariationSettings="'wght' 600"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/blueos_widget_on_primary_container"
+            android:textSize="44sp" />
+
+        <TextView
+            android:id="@+id/blueos_countdown_caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:alpha="0.8"
+            android:ellipsize="end"
+            android:fontFamily="google-sans-text"
+            android:singleLine="true"
+            android:textColor="@color/blueos_widget_on_primary_container"
+            android:textSize="13sp" />
+    </LinearLayout>
+</FrameLayout>

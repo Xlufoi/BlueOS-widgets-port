@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS quick toggles widget: flashlight, do not disturb, auto-rotate, dark theme, saver -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blueos_widget_outline"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/blueos_widget_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/blueos_widget_card" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="6dp">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/blueos_toggle_flashlight"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:background="@drawable/blueos_toggle_off"
+                android:contentDescription="@string/blueos_toggles_flashlight"
+                android:padding="11dp"
+                android:src="@drawable/blueos_ic_flashlight"
+                android:tint="@color/blueos_widget_on_surface" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/blueos_toggle_dnd"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:background="@drawable/blueos_toggle_off"
+                android:contentDescription="@string/blueos_toggles_dnd"
+                android:padding="11dp"
+                android:src="@drawable/blueos_ic_dnd"
+                android:tint="@color/blueos_widget_on_surface" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/blueos_toggle_rotate"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:background="@drawable/blueos_toggle_off"
+                android:contentDescription="@string/blueos_toggles_rotate"
+                android:padding="11dp"
+                android:src="@drawable/blueos_ic_rotate"
+                android:tint="@color/blueos_widget_on_surface" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/blueos_toggle_dark"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:background="@drawable/blueos_toggle_off"
+                android:contentDescription="@string/blueos_toggles_dark"
+                android:padding="11dp"
+                android:src="@drawable/blueos_ic_dark_theme"
+                android:tint="@color/blueos_widget_on_surface" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/blueos_toggle_saver"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:background="@drawable/blueos_toggle_off"
+                android:contentDescription="@string/blueos_toggles_saver"
+                android:padding="11dp"
+                android:src="@drawable/blueos_ic_battery_saver"
+                android:tint="@color/blueos_widget_on_surface" />
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>

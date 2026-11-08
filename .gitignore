@@ -1,0 +1,10 @@
+bin/
+build/
+*.idsig
+*.apk
+*.dex
+*.class
+.gradle/
+local.properties
+.idea/
+*.iml

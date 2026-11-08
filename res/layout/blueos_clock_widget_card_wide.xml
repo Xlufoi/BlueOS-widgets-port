@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS clock card, wide: time (halo over the accent minutes) left, date and alarm right -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blueos_widget_outline"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/blueos_widget_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/blueos_widget_card" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="8dp">
+
+        <!-- The halo over the minutes, like over "OS" in the logo; the top margin leaves it room -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+    
+            <TextClock
+                android:id="@+id/blueos_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="blueos-clock"
+                android:fontVariationSettings="'wght' 600"
+                android:format12Hour="h"
+                android:format24Hour="HH"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/blueos_widget_on_surface"
+                android:textSize="48sp" />
+    
+            <TextView
+                android:id="@+id/blueos_colon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/blueos_hours"
+                android:layout_toEndOf="@id/blueos_hours"
+                android:fontFamily="blueos-clock"
+                android:fontVariationSettings="'wght' 600"
+                android:includeFontPadding="false"
+                android:text=":"
+                android:textColor="@color/blueos_widget_on_surface"
+                android:textSize="48sp" />
+    
+            <TextClock
+                android:id="@+id/blueos_minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/blueos_hours"
+                android:layout_toEndOf="@id/blueos_colon"
+                android:fontFamily="blueos-clock"
+                android:fontVariationSettings="'wght' 600"
+                android:format12Hour="mm"
+                android:format24Hour="mm"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/blueos_widget_primary"
+                android:textSize="48sp" />
+    
+            <ImageView
+                android:id="@+id/blueos_halo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/blueos_minutes"
+                android:layout_alignStart="@id/blueos_minutes"
+                android:layout_alignEnd="@id/blueos_minutes"
+                android:layout_marginBottom="-3dp"
+                android:contentDescription="@null"
+                android:src="@drawable/blueos_widget_halo"
+                android:tint="@color/blueos_widget_primary" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextClock
+                android:id="@+id/blueos_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="google-sans-text"
+                android:singleLine="true"
+                android:textColor="@color/blueos_widget_on_surface"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/blueos_alarm_icon"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_alarm"
+                    android:tint="@color/blueos_widget_on_surface_variant" />
+
+                <TextView
+                    android:id="@+id/blueos_next_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:fontFamily="google-sans-text"
+                    android:singleLine="true"
+                    android:textColor="@color/blueos_widget_on_surface_variant"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FF121316">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blueos_photo_config_title"
+        android:textColor="#FFFFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="24dp">
+
+        <ImageView
+            android:id="@+id/blueos_photo_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/blueos_arona_sticker" />
+
+        <ImageView
+            android:id="@+id/blueos_photo_preview_ring"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:src="@drawable/blueos_photo_ring"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/blueos_photo_shape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/blueos_photo_shape_rounded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/blueos_photo_shape_rounded"
+            android:textColor="#FFE0E0E0"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/blueos_photo_shape_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/blueos_photo_shape_circle"
+            android:textColor="#FFE0E0E0" />
+
+        <RadioButton
+            android:id="@+id/blueos_photo_shape_sticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/blueos_photo_shape_sticker"
+            android:textColor="#FFE0E0E0" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/blueos_photo_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/blueos_photo_change" />
+
+        <Button
+            android:id="@+id/blueos_photo_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/blueos_photo_done" />
+    </LinearLayout>
+</LinearLayout>

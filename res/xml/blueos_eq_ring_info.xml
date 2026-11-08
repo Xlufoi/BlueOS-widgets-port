@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS equalizer: halo -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/blueos_eq_ring_description"
+    android:initialLayout="@layout/blueos_eq_widget_ring"
+    android:minWidth="90dp"
+    android:minHeight="90dp"
+    android:minResizeWidth="90dp"
+    android:minResizeHeight="90dp"
+    android:previewLayout="@layout/blueos_eq_widget_ring"
+    android:resizeMode="horizontal|vertical"
+    android:targetCellWidth="2"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen" />

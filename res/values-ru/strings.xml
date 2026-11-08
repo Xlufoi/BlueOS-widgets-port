@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">BlueOS Widgets</string>
+    <string name="blueos_clock_widget_card">Часы: карточка</string>
+    <string name="blueos_clock_widget_card_description">Время с ореолом, дата и ближайший будильник на карточке</string>
+    <string name="blueos_clock_widget_halo">Часы: ореол</string>
+    <string name="blueos_clock_widget_halo_description">Время с ореолом, без подложки</string>
+    <string name="blueos_clock_widget_tile">Часы: плитка</string>
+    <string name="blueos_clock_widget_tile_description">Часы над минутами под ореолом</string>
+    <string name="blueos_clock_widget_alarm">Будильник</string>
+    <string name="blueos_clock_widget_alarm_description">Когда зазвонит ближайший будильник</string>
+    <string name="blueos_clock_widget_no_alarms">Будильников нет</string>
+
+    <string name="blueos_date_widget">Дата и календарь</string>
+    <string name="blueos_date_widget_description">Сегодняшняя дата и ближайшие события</string>
+    <string name="blueos_date_widget_no_events">Ближайших событий нет</string>
+    <string name="blueos_date_widget_no_access">Откройте «Календарь», чтобы видеть события</string>
+    <string name="blueos_date_widget_tomorrow">Завтра, <xliff:g id="time" example="10:00">%1$s</xliff:g></string>
+    <string name="blueos_countdown_widget">Обратный отсчёт</string>
+    <string name="blueos_countdown_widget_description">Сколько дней осталось до выбранной даты</string>
+    <string name="blueos_countdown_title_hint">Чего вы ждёте?</string>
+    <string name="blueos_countdown_yearly">Каждый год</string>
+    <string name="blueos_countdown_done">Готово</string>
+    <string name="blueos_countdown_today">Сегодня</string>
+    <plurals name="blueos_countdown_days_until">
+        <item quantity="one">день · <xliff:g id="date" example="6 нояб.">%1$s</xliff:g></item>
+        <item quantity="few">дня · <xliff:g id="date" example="6 нояб.">%1$s</xliff:g></item>
+        <item quantity="many">дней · <xliff:g id="date" example="6 нояб.">%1$s</xliff:g></item>
+        <item quantity="other">дня · <xliff:g id="date" example="6 нояб.">%1$s</xliff:g></item>
+    </plurals>
+    <plurals name="blueos_countdown_days_since">
+        <item quantity="one">день назад · <xliff:g id="date" example="6 нояб.">%1$s</xliff:g></item>
+        <item quantity="few">дня назад · <xliff:g id="date" example="6 нояб.">%1$s</xliff:g></item>
+        <item quantity="many">дней назад · <xliff:g id="date" example="6 нояб.">%1$s</xliff:g></item>
+        <item quantity="other">дня назад · <xliff:g id="date" example="6 нояб.">%1$s</xliff:g></item>
+    </plurals>
+
+    <string name="blueos_battery_widget">Батарея</string>
+    <string name="blueos_battery_widget_description">Заряд телефона и наушников</string>
+    <string name="blueos_battery_widget_charging">Заряжается</string>
+    <string name="blueos_battery_widget_headphones">Наушники</string>
+    <string name="blueos_battery_widget_full_in">До полной <xliff:g id="time" example="1:20">%1$s</xliff:g></string>
+    <string name="blueos_battery_widget_full">Заряжено</string>
+
+    <string name="blueos_media_widget">Музыка</string>
+    <string name="blueos_media_widget_description">Что играет в любом приложении, с управлением</string>
+    <string name="blueos_media_widget_idle">Сейчас ничего не играет</string>
+    <string name="blueos_media_widget_play">Воспроизвести</string>
+    <string name="blueos_media_widget_pause">Пауза</string>
+    <string name="blueos_media_widget_previous">Предыдущий трек</string>
+    <string name="blueos_media_widget_next">Следующий трек</string>
+
+    <string name="blueos_eq_bars">Эквалайзер: столбики</string>
+    <string name="blueos_eq_bars_description">Столбики двигаются под музыку</string>
+    <string name="blueos_eq_ring">Эквалайзер: ореол</string>
+    <string name="blueos_eq_ring_description">Столбики вокруг обложки</string>
+    <string name="blueos_eq_wave">Эквалайзер: волна</string>
+    <string name="blueos_eq_wave_description">Волны двигаются под музыку</string>
+    <string name="blueos_eq_full">Эквалайзер: плеер</string>
+    <string name="blueos_eq_full_description">Трек, пауза и столбики</string>
+
+    <string name="blueos_summary_widget">Сводка</string>
+    <string name="blueos_summary_widget_description">Приветствие, дата и что дальше</string>
+    <string name="blueos_summary_morning">"Доброе утро, "</string>
+    <string name="blueos_summary_day">"Добрый день, "</string>
+    <string name="blueos_summary_evening">"Добрый вечер, "</string>
+    <string name="blueos_summary_night">"Доброй ночи, "</string>
+    <string name="blueos_summary_sensei">Сэнсэй</string>
+
+    <string name="blueos_toggles_widget">Быстрые переключатели</string>
+    <string name="blueos_toggles_widget_description">Фонарик, «Не беспокоить», автоповорот, тёмная тема, энергосбережение</string>
+    <string name="blueos_toggles_flashlight">Фонарик</string>
+    <string name="blueos_toggles_dnd">Не беспокоить</string>
+    <string name="blueos_toggles_rotate">Автоповорот</string>
+    <string name="blueos_toggles_dark">Тёмная тема</string>
+    <string name="blueos_toggles_saver">Энергосбережение</string>
+
+    <string name="blueos_photo_widget_small">Фото: маленькое</string>
+    <string name="blueos_photo_widget_square">Фото: квадрат</string>
+    <string name="blueos_photo_widget_portrait">Фото: портрет</string>
+    <string name="blueos_photo_widget_wide">Фото: широкое</string>
+    <string name="blueos_photo_widget_description">Любое фото или стикер на главном экране</string>
+    <string name="blueos_photo_config_title">Фото на главный экран</string>
+    <string name="blueos_photo_shape_rounded">Скругление</string>
+    <string name="blueos_photo_shape_circle">Круг</string>
+    <string name="blueos_photo_shape_sticker">Стикер</string>
+    <string name="blueos_photo_change">Другое фото</string>
+    <string name="blueos_photo_done">Готово</string>
+    <string name="blueos_photo_error">Не получается открыть эту картинку</string>
+
+    <string name="blueos_widget_weather">Погода</string>
+    <string name="blueos_widget_weather_description">Текущая температура и прогноз</string>
+    <string name="blueos_widget_weather_small">Погода: 2x1</string>
+    <string name="blueos_widget_weather_large">Погода: 2x2</string>
+    <string name="blueos_weather_desc">Прогноз погоды и температура через Open-Meteo</string>
+    <string name="blueos_widget_arona">Компаньон Арона</string>
+    <string name="blueos_widget_arona_description">Интерактивный персонаж Арона на рабочем столе</string>
+    <string name="blueos_widget_plana">Компаньон Плана</string>
+    <string name="blueos_widget_plana_description">Интерактивный персонаж Плана на рабочем столе</string>
+    <string name="blueos_plana_widget_desc">Питомец Плана, покачивающийся под бит музыки</string>
+    <string name="blueos_clock_moe_desc">Часы в стиле Kivotos с аниме-цифрами</string>
+    <string name="blueos_calendar_month_desc">Сетка календаря на месяц с подсветкой сегодняшнего дня</string>
+    <string name="blueos_media_vinyl_desc">Виниловый плеер с вращающейся пластинкой</string>
+    <string name="blueos_clock_weather_desc">Цифровые часы с живым прогнозом погоды</string>
+    <string name="blueos_media_cassette_desc">Ретро аудиокассета Walkman с катушками и обложкой</string>
+    <string name="blueos_duo_desc">Дуэт Ароны и Планы, покачивающийся под бит музыки</string>
+    <string name="blueos_system_desc">Монитор системы: Батарея, ОЗУ и Память в реальном времени</string>
+    <string name="blueos_clock_widget_weather">Часы и Погода</string>
+    <string name="blueos_widget_duo">Дуэт: Арона и Плана</string>
+    <string name="blueos_widget_system">Монитор системы</string>
+    <string name="blueos_media_cassette">Плеер: Аудиокассета</string>
+</resources>

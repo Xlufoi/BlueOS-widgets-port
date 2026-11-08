@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme-adaptive aliases (night) -->
+    <color name="blueos_widget_card">#FF000000</color>
+    <color name="blueos_widget_card_highest">#FF131D2D</color>
+    <color name="blueos_widget_on_surface">#FFFFFFFF</color>
+    <color name="blueos_widget_on_surface_variant">#FFA0B0C4</color>
+    <color name="blueos_widget_primary">#FF53B2FF</color>
+    <color name="blueos_widget_on_primary">#FFFFFFFF</color>
+    <color name="blueos_widget_primary_container">#FF000000</color>
+    <color name="blueos_widget_on_primary_container">#FF38BDF8</color>
+</resources>

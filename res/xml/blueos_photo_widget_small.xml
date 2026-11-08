@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 BlueOS
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- BlueOS photo widget: small (1x1); all sizes resize freely -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="org.lineageos.glimpse.widgets.BlueOSPhotoConfigActivity"
+    android:description="@string/blueos_photo_widget_description"
+    android:initialLayout="@layout/blueos_photo_widget_rounded"
+    android:minWidth="40dp"
+    android:minHeight="40dp"
+    android:minResizeWidth="40dp"
+    android:minResizeHeight="40dp"
+    android:previewLayout="@layout/blueos_photo_widget_rounded"
+    android:resizeMode="horizontal|vertical"
+    android:targetCellWidth="1"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen"
+    android:widgetFeatures="reconfigurable" />

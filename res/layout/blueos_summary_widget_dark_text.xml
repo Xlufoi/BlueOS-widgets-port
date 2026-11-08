@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS "Summary" widget, no card (dark text for light wallpapers): greeting to Sensei, date, next event or alarm -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingHorizontal="8dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/blueos_summary_greeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="blueos-clock"
+            android:fontVariationSettings="'wght' 600"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="@color/blueos_color_on_surface_light"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="blueos-clock"
+            android:fontVariationSettings="'wght' 600"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:text="@string/blueos_summary_sensei"
+            android:textColor="@color/blueos_color_primary_light"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextClock
+            android:id="@+id/blueos_summary_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="google-sans-text"
+            android:singleLine="true"
+            android:textColor="@color/blueos_color_on_surface_light"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/blueos_summary_icon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="12dp"
+            android:contentDescription="@null"
+            android:src="@drawable/blueos_ic_event"
+            android:tint="@color/blueos_color_primary_light"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/blueos_summary_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="google-sans-text"
+            android:singleLine="true"
+            android:textColor="@color/blueos_color_on_surface_light"
+            android:textSize="14sp"
+            android:visibility="gone" />
+    </LinearLayout>
+</LinearLayout>

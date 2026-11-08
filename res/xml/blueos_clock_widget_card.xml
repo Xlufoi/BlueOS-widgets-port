@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS clock widget A (card) -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/blueos_clock_widget_card_description"
+    android:initialLayout="@layout/blueos_clock_widget_card"
+    android:minWidth="180dp"
+    android:minHeight="60dp"
+    android:minResizeWidth="150dp"
+    android:minResizeHeight="60dp"
+    android:previewLayout="@layout/blueos_clock_widget_card"
+    android:resizeMode="horizontal|vertical"
+    android:targetCellWidth="3"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen" />

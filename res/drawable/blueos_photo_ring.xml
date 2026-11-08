@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 BlueOS
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- BlueOS photo widget: accent ring around a round photo -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <path
+        android:pathData="M48,1.75a46.25,46.25 0 1,0 0.001,0z"
+        android:strokeWidth="3.5"
+        android:strokeColor="@color/blueos_widget_primary" />
+</vector>

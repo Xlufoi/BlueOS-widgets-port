@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS: the tilted halo of the logo. The viewport leaves room for the tilt, so it isn't clipped. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp"
+    android:height="15dp"
+    android:viewportWidth="64"
+    android:viewportHeight="24">
+    <group
+        android:pivotX="32"
+        android:pivotY="12"
+        android:rotation="-8">
+        <path
+            android:pathData="M6,12 a26,6 0 1,0 52,0 a26,6 0 1,0 -52,0"
+            android:strokeColor="@color/blueos_widget_primary"
+            android:strokeWidth="3" />
+    </group>
+</vector>

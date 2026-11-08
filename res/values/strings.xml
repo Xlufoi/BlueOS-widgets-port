@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">BlueOS Widgets</string>
+    <string name="blueos_clock_widget_card">Clock: Card</string>
+    <string name="blueos_clock_widget_card_description">Time with halo, date and next alarm on card</string>
+    <string name="blueos_clock_widget_halo">Clock: Halo</string>
+    <string name="blueos_clock_widget_halo_description">Time with halo, no background</string>
+    <string name="blueos_clock_widget_tile">Clock: Tile</string>
+    <string name="blueos_clock_widget_tile_description">Hours over minutes under halo</string>
+    <string name="blueos_clock_widget_alarm">Clock: Next alarm</string>
+    <string name="blueos_clock_widget_alarm_description">When the next alarm rings</string>
+    <string name="blueos_clock_widget_no_alarms">No alarms</string>
+
+    <string name="blueos_date_widget">Date &amp; Calendar</string>
+    <string name="blueos_date_widget_description">Today date and upcoming events</string>
+    <string name="blueos_date_widget_no_events">No upcoming events</string>
+    <string name="blueos_date_widget_no_access">Open Calendar to show events</string>
+    <string name="blueos_date_widget_tomorrow">Tomorrow, <xliff:g id="time" example="10:00">%1$s</xliff:g></string>
+    <string name="blueos_countdown_widget">Countdown</string>
+    <string name="blueos_countdown_widget_description">Days until a date you pick</string>
+    <string name="blueos_countdown_title_hint">What are you waiting for?</string>
+    <string name="blueos_countdown_yearly">Every year</string>
+    <string name="blueos_countdown_done">Done</string>
+    <string name="blueos_countdown_today">Today</string>
+    <plurals name="blueos_countdown_days_until">
+        <item quantity="one">day · <xliff:g id="date" example="6 Nov">%1$s</xliff:g></item>
+        <item quantity="other">days · <xliff:g id="date" example="6 Nov">%1$s</xliff:g></item>
+    </plurals>
+    <plurals name="blueos_countdown_days_since">
+        <item quantity="one">day ago · <xliff:g id="date" example="6 Nov">%1$s</xliff:g></item>
+        <item quantity="other">days ago · <xliff:g id="date" example="6 Nov">%1$s</xliff:g></item>
+    </plurals>
+
+    <string name="blueos_battery_widget">Battery</string>
+    <string name="blueos_battery_widget_description">Phone and headphones charge</string>
+    <string name="blueos_battery_widget_charging">Charging</string>
+    <string name="blueos_battery_widget_headphones">Headphones</string>
+    <string name="blueos_battery_widget_full_in">Full in <xliff:g id="time" example="1:20">%1$s</xliff:g></string>
+    <string name="blueos_battery_widget_full">Charged</string>
+
+    <string name="blueos_media_widget">Music</string>
+    <string name="blueos_media_widget_description">Now playing music controls</string>
+    <string name="blueos_media_widget_idle">Nothing is playing</string>
+    <string name="blueos_media_widget_play">Play</string>
+    <string name="blueos_media_widget_pause">Pause</string>
+    <string name="blueos_media_widget_previous">Previous</string>
+    <string name="blueos_media_widget_next">Next</string>
+
+    <string name="blueos_eq_bars">Equalizer: bars</string>
+    <string name="blueos_eq_bars_description">Bars that move to the music</string>
+    <string name="blueos_eq_ring">Equalizer: halo</string>
+    <string name="blueos_eq_ring_description">Bars around the album art</string>
+    <string name="blueos_eq_wave">Equalizer: wave</string>
+    <string name="blueos_eq_wave_description">Waves that move to the music</string>
+    <string name="blueos_eq_full">Equalizer: player</string>
+    <string name="blueos_eq_full_description">The track, play / pause and bars</string>
+
+    <string name="blueos_summary_widget">Summary</string>
+    <string name="blueos_summary_widget_description">Greeting, date and what next</string>
+    <string name="blueos_summary_morning">"Good morning, "</string>
+    <string name="blueos_summary_day">"Good afternoon, "</string>
+    <string name="blueos_summary_evening">"Good evening, "</string>
+    <string name="blueos_summary_night">"Good night, "</string>
+    <string name="blueos_summary_sensei">Sensei</string>
+
+    <string name="blueos_toggles_widget">Quick toggles</string>
+    <string name="blueos_toggles_widget_description">Flashlight, do not disturb, auto-rotate, dark theme, battery saver</string>
+    <string name="blueos_toggles_flashlight">Flashlight</string>
+    <string name="blueos_toggles_dnd">Do not disturb</string>
+    <string name="blueos_toggles_rotate">Auto-rotate</string>
+    <string name="blueos_toggles_dark">Dark theme</string>
+    <string name="blueos_toggles_saver">Battery saver</string>
+
+    <string name="blueos_photo_widget_small">Photo: small</string>
+    <string name="blueos_photo_widget_square">Photo: square</string>
+    <string name="blueos_photo_widget_portrait">Photo: portrait</string>
+    <string name="blueos_photo_widget_wide">Photo: wide</string>
+    <string name="blueos_photo_widget_description">Any photo or sticker on home screen</string>
+    <string name="blueos_photo_config_title">Photo on home screen</string>
+    <string name="blueos_photo_shape_rounded">Rounded</string>
+    <string name="blueos_photo_shape_circle">Circle</string>
+    <string name="blueos_photo_shape_sticker">Sticker</string>
+    <string name="blueos_photo_change">Another photo</string>
+    <string name="blueos_photo_done">Done</string>
+    <string name="blueos_photo_error">Can not open this picture</string>
+
+    <string name="blueos_widget_weather">Weather</string>
+    <string name="blueos_widget_weather_description">Current temperature and weather</string>
+    <string name="blueos_widget_weather_small">Weather: 2x1</string>
+    <string name="blueos_widget_weather_large">Weather: 2x2</string>
+    <string name="blueos_weather_desc">Live weather forecasts from Open-Meteo</string>
+    <string name="blueos_widget_arona">Arona Companion</string>
+    <string name="blueos_widget_arona_description">Interactive Arona desktop companion</string>
+    <string name="blueos_widget_plana">Plana Companion</string>
+    <string name="blueos_widget_plana_description">Interactive Plana desktop companion</string>
+    <string name="blueos_plana_widget_desc">Plana pet that sways to the music beat</string>
+    <string name="blueos_clock_moe_desc">Kivotos anime digit clock</string>
+    <string name="blueos_calendar_month_desc">Monthly calendar grid with today highlighted</string>
+    <string name="blueos_media_vinyl_desc">Spinning vinyl record player with controls</string>
+    <string name="blueos_clock_weather_desc">Digital clock with live weather forecast</string>
+    <string name="blueos_media_cassette_desc">Retro Walkman cassette tape player</string>
+    <string name="blueos_duo_desc">Arona and Plana companion duo rocking to the beat</string>
+    <string name="blueos_system_desc">Real-time Battery, RAM and Storage monitor</string>
+    <string name="blueos_clock_widget_weather">Clock &amp; Weather</string>
+    <string name="blueos_widget_duo">Arona &amp; Plana Duo</string>
+    <string name="blueos_widget_system">System Monitor</string>
+    <string name="blueos_media_cassette">Player: Retro Cassette</string>
+</resources>

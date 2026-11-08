@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS equalizer widget: the track and bars from the middle line on the accent card -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blueos_widget_outline"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/blueos_widget_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/blueos_widget_card_accent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/blueos_media_art_bg"
+                android:clipToOutline="true">
+
+                <ImageView
+                    android:id="@+id/blueos_media_placeholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    android:padding="4dp"
+                    android:src="@drawable/blueos_ic_music_note" />
+
+                <ImageView
+                    android:id="@+id/blueos_media_art"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/blueos_media_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="google-sans-text-medium"
+                    android:singleLine="true"
+                    android:text="@string/blueos_media_widget_idle"
+                    android:textColor="@color/blueos_widget_on_primary_container"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/blueos_media_artist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.75"
+                    android:ellipsize="end"
+                    android:fontFamily="google-sans-text"
+                    android:singleLine="true"
+                    android:textColor="@color/blueos_widget_on_primary_container"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/blueos_media_play_pause"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/blueos_media_play_bg_inverse"
+                android:contentDescription="@string/blueos_media_widget_play"
+                android:padding="9dp"
+                android:src="@drawable/blueos_ic_play"
+                android:tint="@color/blueos_widget_primary_container" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/blueos_eq_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+</FrameLayout>
