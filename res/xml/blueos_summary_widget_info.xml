@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BlueOS summary widget -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/blueos_summary_widget_description"
     android:initialLayout="@layout/blueos_summary_widget_light_text"
-    android:minWidth="180dp"
-    android:minHeight="50dp"
-    android:minResizeWidth="180dp"
-    android:minResizeHeight="50dp"
     android:previewLayout="@layout/blueos_summary_widget_light_text"
-    android:resizeMode="horizontal|vertical"
+    android:previewImage="@drawable/blueos_preview_summary_trans"
+    android:minWidth="250dp"
+    android:minHeight="70dp"
     android:targetCellWidth="4"
     android:targetCellHeight="1"
+    android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
     android:widgetCategory="home_screen" />

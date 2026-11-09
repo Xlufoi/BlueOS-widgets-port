@@ -8,22 +8,24 @@ import android.app.WallpaperColors;
 import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.provider.AlarmClock;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
 
-    private static final String ACTION_WALLPAPER_COLORS_CHANGED =
-            "org.blueos.intent.action.WALLPAPER_COLORS_CHANGED";
+    public static final String ACTION_MOE_TICK = "org.blueos.widgets.action.MOE_TICK";
 
     protected abstract int getLayoutId();
 
@@ -31,11 +33,19 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
         return true;
     }
 
+    protected boolean isTransparent() {
+        return false;
+    }
+
     protected void style(Context context, RemoteViews rv) {
         int accent = WidgetThemeManager.getAccentColor(context);
         try {
             rv.setTextColor(R.id.blueos_minutes, accent);
         } catch (Throwable ignored) {}
+    }
+
+    protected void applyThemeBackground(Context context, RemoteViews rv, int widgetId) {
+        WidgetThemeManager.applyBackground(context, rv, isTransparent());
     }
 
     @Override
@@ -69,7 +79,7 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
         }
 
         if (hasDateRow()) {
-            final String dateFormat = DateFormat.getBestDateTimePattern(Locale.getDefault(), "EEEMMMd");
+            final String dateFormat = DateFormat.getBestDateTimePattern(LanguageManager.getLocale(context), "EEEMMMd");
             rv.setCharSequence(R.id.blueos_date, "setFormat12Hour", dateFormat);
             rv.setCharSequence(R.id.blueos_date, "setFormat24Hour", dateFormat);
 
@@ -81,11 +91,11 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
         }
 
         style(context, rv);
-        WidgetThemeManager.applyBackground(context, rv);
+        applyThemeBackground(context, rv, widgetId);
         return rv;
     }
 
-    /** 1. Card Clock (2x2 or resizable) */
+    /** 1a. Card Clock (2x2 Card) */
     public static class Card extends BlueOSClockWidgetProvider {
         @Override
         protected int getLayoutId() {
@@ -93,7 +103,22 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    /** 2. Card Wide Clock (4x2 / 3x2) */
+    /** 1b. Card Clock (2x2 Transparent) */
+    public static class CardTransparent extends BlueOSClockWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_clock_widget_card_trans;
+        }
+
+        @Override
+        protected boolean isTransparent() {
+            return true;
+        }
+    }
+
+    public static class CardOutline extends CardTransparent {}
+
+    /** 2a. Card Wide Clock (4x2 Card) */
     public static class CardWide extends BlueOSClockWidgetProvider {
         @Override
         protected int getLayoutId() {
@@ -101,11 +126,31 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    /** 3. Halo Clock (Transparent wallpaper-adaptive) */
+    /** 2b. Card Wide Clock (4x2 Transparent) */
+    public static class CardWideTransparent extends BlueOSClockWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_clock_widget_card_wide_trans;
+        }
+
+        @Override
+        protected boolean isTransparent() {
+            return true;
+        }
+    }
+
+    public static class CardWideOutline extends CardWideTransparent {}
+
+    /** 3a. Halo Clock (2x2 Transparent) */
     public static class Halo extends BlueOSClockWidgetProvider {
         @Override
         protected int getLayoutId() {
             return R.layout.blueos_clock_widget_halo;
+        }
+
+        @Override
+        protected boolean isTransparent() {
+            return true;
         }
 
         @Override
@@ -132,7 +177,20 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    /** 4. Tile Clock (Stacked hours over minutes) */
+    /** 3b. Halo Clock (2x2 Card) */
+    public static class HaloCard extends BlueOSClockWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_clock_widget_halo_card;
+        }
+
+        @Override
+        protected boolean isTransparent() {
+            return false;
+        }
+    }
+
+    /** 4a. Tile Clock (2x2 Card) */
     public static class Tile extends BlueOSClockWidgetProvider {
         @Override
         protected int getLayoutId() {
@@ -145,7 +203,25 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    /** 5. Next Alarm Widget */
+    /** 4b. Tile Clock (2x2 Transparent) */
+    public static class TileTransparent extends BlueOSClockWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_clock_widget_tile_trans;
+        }
+
+        @Override
+        protected boolean hasDateRow() {
+            return false;
+        }
+
+        @Override
+        protected boolean isTransparent() {
+            return true;
+        }
+    }
+
+    /** 5a. Next Alarm Widget (2x2 Card) */
     public static class Alarm extends BlueOSClockWidgetProvider {
         @Override
         protected int getLayoutId() {
@@ -177,11 +253,25 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
             int accent = WidgetThemeManager.getAccentColor(context);
             rv.setTextColor(R.id.blueos_alarm_time, accent);
 
-            WidgetThemeManager.applyBackground(context, rv);
+            WidgetThemeManager.applyBackground(context, rv, isTransparent());
             return rv;
         }
     }
 
+    /** 5b. Next Alarm Widget (2x2 Transparent) */
+    public static class AlarmTransparent extends Alarm {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_clock_widget_alarm_trans;
+        }
+
+        @Override
+        protected boolean isTransparent() {
+            return true;
+        }
+    }
+
+    /** 6a. Kivotos Moe Clock (2x2 Transparent) */
     public static class Moe extends BlueOSClockWidgetProvider {
         private static final int[] DIGIT_RES = {
                 R.drawable.blueos_moe_0, R.drawable.blueos_moe_1, R.drawable.blueos_moe_2,
@@ -193,6 +283,17 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
         @Override
         protected int getLayoutId() {
             return R.layout.blueos_clock_widget_moe;
+        }
+
+        @Override
+        protected boolean isTransparent() {
+            return true;
+        }
+
+        @Override
+        public void onUpdate(Context context, AppWidgetManager wm, int[] widgetIds) {
+            super.onUpdate(context, wm, widgetIds);
+            scheduleMoeAlarm(context);
         }
 
         @Override
@@ -208,9 +309,9 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
                 rv.setOnClickPendingIntent(android.R.id.background, pi);
             }
 
-            java.util.Calendar cal = java.util.Calendar.getInstance();
-            int h = cal.get(java.util.Calendar.HOUR_OF_DAY);
-            int m = cal.get(java.util.Calendar.MINUTE);
+            Calendar cal = Calendar.getInstance();
+            int h = cal.get(Calendar.HOUR_OF_DAY);
+            int m = cal.get(Calendar.MINUTE);
 
             int h1 = Math.min(9, Math.max(0, h / 10));
             int h2 = Math.min(9, Math.max(0, h % 10));
@@ -224,7 +325,66 @@ public abstract class BlueOSClockWidgetProvider extends AppWidgetProvider {
 
             int accent = WidgetThemeManager.getAccentColor(context);
             rv.setTextColor(R.id.blueos_moe_colon, accent);
+
+            WidgetThemeManager.applyBackground(context, rv, isTransparent());
             return rv;
+        }
+    }
+
+    /** 6b. Kivotos Moe Clock (2x2 Card) */
+    public static class MoeCard extends Moe {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_clock_widget_moe_card;
+        }
+
+        @Override
+        protected boolean isTransparent() {
+            return false;
+        }
+    }
+
+    public static void updateMoeClocks(Context context) {
+        if (context == null) return;
+        Context app = context.getApplicationContext();
+        AppWidgetManager wm = AppWidgetManager.getInstance(app);
+
+        int[] idsMoe = wm.getAppWidgetIds(new ComponentName(app, Moe.class));
+        if (idsMoe != null && idsMoe.length > 0) {
+            new Moe().onUpdate(app, wm, idsMoe);
+        }
+        int[] idsCard = wm.getAppWidgetIds(new ComponentName(app, MoeCard.class));
+        if (idsCard != null && idsCard.length > 0) {
+            new MoeCard().onUpdate(app, wm, idsCard);
+        }
+
+        scheduleMoeAlarm(app);
+    }
+
+    public static void scheduleMoeAlarm(Context context) {
+        if (context == null) return;
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (am == null) return;
+
+        long now = System.currentTimeMillis();
+        long nextMinute = (now / 60000L + 1L) * 60000L + 50L;
+
+        Intent intent = new Intent(ACTION_MOE_TICK).setClass(context, MoeTickReceiver.class);
+        PendingIntent pi = PendingIntent.getBroadcast(context, 888, intent,
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        try {
+            am.setExactAndAllowWhileIdle(AlarmManager.RTC, nextMinute, pi);
+        } catch (Throwable t) {
+            try {
+                am.set(AlarmManager.RTC, nextMinute, pi);
+            } catch (Throwable ignored) {}
+        }
+    }
+
+    public static class MoeTickReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateMoeClocks(context);
         }
     }
 }

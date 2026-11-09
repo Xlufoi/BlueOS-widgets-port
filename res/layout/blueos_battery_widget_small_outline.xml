@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS battery widget, 1x1: outline minimalist -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/blueos_widget_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/blueos_battery_ring"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="85"
+        android:progressDrawable="@drawable/blueos_battery_ring" />
+
+    <TextView
+        android:id="@+id/blueos_battery_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="blueos-clock"
+        android:fontVariationSettings="'wght' 600"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:text="85%"
+        android:textColor="@color/blueos_widget_on_surface"
+        android:textSize="14sp" />
+</FrameLayout>

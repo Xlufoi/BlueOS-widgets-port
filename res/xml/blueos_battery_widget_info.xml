@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BlueOS battery widget -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/blueos_battery_widget_description"
-    android:initialLayout="@layout/blueos_battery_widget"
-    android:minWidth="110dp"
-    android:minHeight="110dp"
-    android:previewLayout="@layout/blueos_battery_widget"
-    android:resizeMode="none"
+    android:initialLayout="@layout/blueos_battery_widget_medium"
+    android:previewLayout="@layout/blueos_battery_widget_medium"
+    android:previewImage="@drawable/blueos_preview_battery_medium_card"
+    android:minWidth="140dp"
+    android:minHeight="140dp"
     android:targetCellWidth="2"
     android:targetCellHeight="2"
+    android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
     android:widgetCategory="home_screen" />

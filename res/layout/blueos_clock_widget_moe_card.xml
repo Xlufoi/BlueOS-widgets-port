@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS clock widget: Kivotos Moe Clock on Card plate -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blueos_widget_outline"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/blueos_widget_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/blueos_card_pure_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/blueos_moe_h1"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/blueos_moe_1" />
+
+        <ImageView
+            android:id="@+id/blueos_moe_h2"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="3dp"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/blueos_moe_2" />
+
+        <TextView
+            android:id="@+id/blueos_moe_colon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:fontFamily="blueos-clock"
+            android:fontVariationSettings="'wght' 700"
+            android:includeFontPadding="false"
+            android:text=":"
+            android:textColor="#38BDF8"
+            android:textSize="40sp" />
+
+        <ImageView
+            android:id="@+id/blueos_moe_m1"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/blueos_moe_3" />
+
+        <ImageView
+            android:id="@+id/blueos_moe_m2"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="3dp"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/blueos_moe_4" />
+    </LinearLayout>
+</FrameLayout>

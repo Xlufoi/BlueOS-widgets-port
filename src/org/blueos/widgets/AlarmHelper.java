@@ -78,12 +78,13 @@ public class AlarmHelper {
             diffDays += 365;
         }
 
+        boolean isRu = LanguageManager.isRussian(context);
         if (diffDays == 0) {
-            return "Сегодня";
+            return context.getString(R.string.blueos_countdown_today);
         } else if (diffDays == 1) {
-            return "Завтра";
+            return isRu ? "Завтра" : "Tomorrow";
         } else {
-            return DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "EEEMMMd"), new Date(triggerTime)).toString();
+            return DateFormat.format(DateFormat.getBestDateTimePattern(LanguageManager.getLocale(context), "EEEMMMd"), new Date(triggerTime)).toString();
         }
     }
 

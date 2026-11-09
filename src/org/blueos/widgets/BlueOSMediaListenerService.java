@@ -3,6 +3,7 @@ package org.blueos.widgets;
 import android.app.Notification;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -41,6 +42,34 @@ public class BlueOSMediaListenerService extends NotificationListenerService {
 
     public static boolean isConnected() {
         return sInstance != null;
+    }
+
+    private final android.content.BroadcastReceiver mTickReceiver = new android.content.BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            BlueOSClockWidgetProvider.updateMoeClocks(context);
+        }
+    };
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        try {
+            android.content.IntentFilter filter = new android.content.IntentFilter();
+            filter.addAction(Intent.ACTION_TIME_TICK);
+            filter.addAction(Intent.ACTION_TIME_CHANGED);
+            filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+            filter.addAction(Intent.ACTION_SCREEN_ON);
+            registerReceiver(mTickReceiver, filter);
+        } catch (Throwable ignored) {}
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        try {
+            unregisterReceiver(mTickReceiver);
+        } catch (Throwable ignored) {}
     }
 
     @Override

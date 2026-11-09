@@ -73,4 +73,28 @@ public class RootHelper {
             return false;
         }
     }
+
+    public static boolean whitelistBattery(String packageName) {
+        String su = findSuBinary();
+        String[] cmds = {
+                "dumpsys deviceidle whitelist +" + packageName,
+                "cmd appops set " + packageName + " RUN_IN_BACKGROUND allow",
+                "cmd appops set " + packageName + " RUN_ANY_IN_BACKGROUND allow"
+        };
+
+        try {
+            Process p = new ProcessBuilder(su).start();
+            DataOutputStream os = new DataOutputStream(p.getOutputStream());
+            for (String cmd : cmds) {
+                os.writeBytes(cmd + "\n");
+            }
+            os.writeBytes("exit\n");
+            os.flush();
+            p.waitFor(5, TimeUnit.SECONDS);
+            return true;
+        } catch (Throwable t) {
+            Log.e(TAG, "Failed to whitelist battery via root: " + t.getMessage());
+            return false;
+        }
+    }
 }

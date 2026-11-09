@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BlueOS equalizer: bars -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/blueos_eq_bars_description"
     android:initialLayout="@layout/blueos_eq_widget_bars"
-    android:minWidth="110dp"
-    android:minHeight="40dp"
-    android:minResizeWidth="110dp"
-    android:minResizeHeight="40dp"
     android:previewLayout="@layout/blueos_eq_widget_bars"
-    android:resizeMode="horizontal|vertical"
+    android:previewImage="@drawable/blueos_preview_eq_bars_trans"
+    android:minWidth="220dp"
+    android:minHeight="60dp"
     android:targetCellWidth="4"
     android:targetCellHeight="1"
+    android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
     android:widgetCategory="home_screen" />

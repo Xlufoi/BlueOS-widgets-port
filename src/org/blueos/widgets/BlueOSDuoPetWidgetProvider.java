@@ -29,14 +29,22 @@ public class BlueOSDuoPetWidgetProvider extends AppWidgetProvider {
             "Welcome back, Sensei! We were waiting for you.",
     };
 
+    protected boolean isTransparent() {
+        return false;
+    }
+
     @Override
     public void onUpdate(Context context, AppWidgetManager wm, int[] ids) {
         for (int id : ids) {
-            update(context, wm, id, 0);
+            update(context, wm, id, 0, isTransparent());
         }
     }
 
     public static void update(Context context, AppWidgetManager wm, int id, int animStep) {
+        update(context, wm, id, animStep, false);
+    }
+
+    public static void update(Context context, AppWidgetManager wm, int id, int animStep, boolean isTransparent) {
         RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.blueos_duo_pet_widget);
         boolean isRu = LanguageManager.isRussian(context);
         boolean playing = BlueOSMediaWidgetProvider.isPlaying(context);
@@ -81,7 +89,7 @@ public class BlueOSDuoPetWidgetProvider extends AppWidgetProvider {
                     PendingIntent.getActivity(context, id, launch, PendingIntent.FLAG_IMMUTABLE));
         }
 
-        WidgetThemeManager.applyBackground(context, rv);
+        WidgetThemeManager.applyBackground(context, rv, isTransparent);
         wm.updateAppWidget(id, rv);
     }
 
@@ -90,8 +98,21 @@ public class BlueOSDuoPetWidgetProvider extends AppWidgetProvider {
         int[] ids = wm.getAppWidgetIds(new ComponentName(context, BlueOSDuoPetWidgetProvider.class));
         if (ids != null && ids.length > 0) {
             for (int id : ids) {
-                update(context, wm, id, animStep);
+                update(context, wm, id, animStep, false);
             }
+        }
+        int[] transIds = wm.getAppWidgetIds(new ComponentName(context, BlueOSDuoPetWidgetProvider.Transparent.class));
+        if (transIds != null && transIds.length > 0) {
+            for (int id : transIds) {
+                update(context, wm, id, animStep, true);
+            }
+        }
+    }
+
+    public static class Transparent extends BlueOSDuoPetWidgetProvider {
+        @Override
+        protected boolean isTransparent() {
+            return true;
         }
     }
 }

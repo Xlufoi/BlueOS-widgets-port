@@ -62,6 +62,10 @@ public class BlueOSAronaPetWidgetProvider extends AppWidgetProvider {
         return isRu ? GREETINGS_RU : GREETINGS_EN;
     }
 
+    protected boolean isTransparent() {
+        return false;
+    }
+
     @Override
     public void onUpdate(Context context, AppWidgetManager wm, int[] ids) {
         for (int id : ids) {
@@ -113,7 +117,7 @@ public class BlueOSAronaPetWidgetProvider extends AppWidgetProvider {
                     PendingIntent.getActivity(context, id, launch, PendingIntent.FLAG_IMMUTABLE));
         }
 
-        WidgetThemeManager.applyBackground(context, rv);
+        WidgetThemeManager.applyBackground(context, rv, isTransparent());
         wm.updateAppWidget(id, rv);
     }
 
@@ -162,12 +166,33 @@ public class BlueOSAronaPetWidgetProvider extends AppWidgetProvider {
                 prov.update(context, wm, id, animStep, true);
             }
         }
+        int[] aronaTransIds = wm.getAppWidgetIds(new ComponentName(context, BlueOSAronaPetWidgetProvider.Transparent.class));
+        if (aronaTransIds != null && aronaTransIds.length > 0) {
+            BlueOSAronaPetWidgetProvider.Transparent prov = new BlueOSAronaPetWidgetProvider.Transparent();
+            for (int id : aronaTransIds) {
+                prov.update(context, wm, id, animStep, true);
+            }
+        }
         int[] planaIds = wm.getAppWidgetIds(new ComponentName(context, BlueOSPlanaPetWidgetProvider.class));
         if (planaIds != null && planaIds.length > 0) {
             BlueOSPlanaPetWidgetProvider prov = new BlueOSPlanaPetWidgetProvider();
             for (int id : planaIds) {
                 prov.update(context, wm, id, animStep, true);
             }
+        }
+        int[] planaTransIds = wm.getAppWidgetIds(new ComponentName(context, BlueOSPlanaPetWidgetProvider.Transparent.class));
+        if (planaTransIds != null && planaTransIds.length > 0) {
+            BlueOSPlanaPetWidgetProvider.Transparent prov = new BlueOSPlanaPetWidgetProvider.Transparent();
+            for (int id : planaTransIds) {
+                prov.update(context, wm, id, animStep, true);
+            }
+        }
+    }
+
+    public static class Transparent extends BlueOSAronaPetWidgetProvider {
+        @Override
+        protected boolean isTransparent() {
+            return true;
         }
     }
 }

@@ -38,6 +38,14 @@ public class BlueOSCountdownWidgetProvider extends AppWidgetProvider {
         return context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
     }
 
+    protected int getLayoutId() {
+        return R.layout.blueos_countdown_widget;
+    }
+
+    protected boolean isOutlineOnly() {
+        return false;
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
@@ -57,7 +65,7 @@ public class BlueOSCountdownWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager wm, int[] widgetIds) {
         for (int id : widgetIds) {
-            update(context, wm, id);
+            update(context, wm, id, getLayoutId(), isOutlineOnly());
         }
         scheduleMidnight(context);
     }
@@ -79,10 +87,27 @@ public class BlueOSCountdownWidgetProvider extends AppWidgetProvider {
         }
     }
 
+    public static void push(Context context) {
+        Context app = LanguageManager.applyLocale(context);
+        AppWidgetManager wm = AppWidgetManager.getInstance(app);
+        int[] ids = wm.getAppWidgetIds(new ComponentName(app, BlueOSCountdownWidgetProvider.class));
+        if (ids != null && ids.length > 0) {
+            new BlueOSCountdownWidgetProvider().onUpdate(app, wm, ids);
+        }
+        int[] idsOutline = wm.getAppWidgetIds(new ComponentName(app, BlueOSCountdownWidgetProvider.Outline.class));
+        if (idsOutline != null && idsOutline.length > 0) {
+            new BlueOSCountdownWidgetProvider.Outline().onUpdate(app, wm, idsOutline);
+        }
+    }
+
     public static void update(Context context, AppWidgetManager wm, int id) {
+        update(context, wm, id, R.layout.blueos_countdown_widget, false);
+    }
+
+    public static void update(Context context, AppWidgetManager wm, int id, int layoutId, boolean isOutline) {
+        context = LanguageManager.applyLocale(context);
         final SharedPreferences prefs = prefs(context);
-        final RemoteViews rv = new RemoteViews(context.getPackageName(),
-                R.layout.blueos_countdown_widget);
+        final RemoteViews rv = new RemoteViews(context.getPackageName(), layoutId);
 
         final long epochDay = prefs.getLong(keyDate(id), Long.MIN_VALUE);
         if (epochDay == Long.MIN_VALUE) {
@@ -101,7 +126,7 @@ public class BlueOSCountdownWidgetProvider extends AppWidgetProvider {
                     title.isEmpty() ? View.GONE : View.VISIBLE);
 
             final String date = DateFormat.format(
-                    DateFormat.getBestDateTimePattern(Locale.getDefault(), "dMMM"),
+                    DateFormat.getBestDateTimePattern(LanguageManager.getLocale(context), "dMMM"),
                     target.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli())
                     .toString();
             if (days == 0) {
@@ -124,7 +149,7 @@ public class BlueOSCountdownWidgetProvider extends AppWidgetProvider {
                 .putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id);
         rv.setOnClickPendingIntent(android.R.id.background, PendingIntent.getActivity(
                 context, id, setup, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT));
-        WidgetThemeManager.applyBackground(context, rv);
+        WidgetThemeManager.applyBackground(context, rv, isOutline);
         wm.updateAppWidget(id, rv);
     }
 
@@ -150,5 +175,17 @@ public class BlueOSCountdownWidgetProvider extends AppWidgetProvider {
         return PendingIntent.getBroadcast(context, 0,
                 new Intent(ACTION_MIDNIGHT).setClass(context, BlueOSCountdownWidgetProvider.class),
                 PendingIntent.FLAG_IMMUTABLE);
+    }
+
+    public static class Outline extends BlueOSCountdownWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_countdown_widget_outline;
+        }
+
+        @Override
+        protected boolean isOutlineOnly() {
+            return true;
+        }
     }
 }

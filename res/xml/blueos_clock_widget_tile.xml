@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BlueOS clock widget C (2x2 tile) -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/blueos_clock_widget_tile_description"
     android:initialLayout="@layout/blueos_clock_widget_tile"
-    android:minWidth="110dp"
-    android:minHeight="110dp"
     android:previewLayout="@layout/blueos_clock_widget_tile"
-    android:resizeMode="none"
+    android:previewImage="@drawable/blueos_preview_clock_tile_card"
+    android:minWidth="140dp"
+    android:minHeight="140dp"
     android:targetCellWidth="2"
     android:targetCellHeight="2"
+    android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
     android:widgetCategory="home_screen" />

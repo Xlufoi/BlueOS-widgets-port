@@ -45,4 +45,11 @@ public class BlueOSPlanaPetWidgetProvider extends BlueOSAronaPetWidgetProvider {
     protected String[] getGreetings(boolean isRu) {
         return isRu ? PLANA_GREETINGS_RU : PLANA_GREETINGS_EN;
     }
+
+    public static class Transparent extends BlueOSPlanaPetWidgetProvider {
+        @Override
+        protected boolean isTransparent() {
+            return true;
+        }
+    }
 }

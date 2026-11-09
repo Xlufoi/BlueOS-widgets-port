@@ -149,10 +149,20 @@ public class BlueOSTogglesWidgetProvider extends AppWidgetProvider {
         }
     }
 
+    protected boolean isTransparent() {
+        return false;
+    }
+
     public static void push(Context context) {
         Context app = context.getApplicationContext();
         AppWidgetManager wm = AppWidgetManager.getInstance(app);
-        ComponentName provider = new ComponentName(app, BlueOSTogglesWidgetProvider.class);
+
+        updateProvider(app, wm, BlueOSTogglesWidgetProvider.class, false);
+        updateProvider(app, wm, BlueOSTogglesWidgetProvider.Transparent.class, true);
+    }
+
+    private static void updateProvider(Context app, AppWidgetManager wm, Class<?> cls, boolean isTransparent) {
+        ComponentName provider = new ComponentName(app, cls);
         int[] ids = wm.getAppWidgetIds(provider);
         if (ids == null || ids.length == 0) return;
 
@@ -190,8 +200,15 @@ public class BlueOSTogglesWidgetProvider extends AppWidgetProvider {
             rv.setOnClickPendingIntent(R.id.blueos_toggle_dark, makeAction(app, ACTION_TOGGLE_DARK, 24));
             rv.setOnClickPendingIntent(R.id.blueos_toggle_saver, makeAction(app, ACTION_TOGGLE_SAVER, 25));
 
-            WidgetThemeManager.applyBackground(app, rv);
+            WidgetThemeManager.applyBackground(app, rv, isTransparent);
             wm.updateAppWidget(id, rv);
+        }
+    }
+
+    public static class Transparent extends BlueOSTogglesWidgetProvider {
+        @Override
+        protected boolean isTransparent() {
+            return true;
         }
     }
 

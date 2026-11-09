@@ -45,9 +45,17 @@ public class BlueOSSummaryWidgetProvider extends AppWidgetProvider {
     }
 
     public static void push(Context context) {
-        Context app = context.getApplicationContext();
+        Context app = LanguageManager.applyLocale(context.getApplicationContext());
         AppWidgetManager wm = AppWidgetManager.getInstance(app);
-        ComponentName provider = new ComponentName(app, BlueOSSummaryWidgetProvider.class);
+
+        // Update transparent
+        updateInstances(app, wm, BlueOSSummaryWidgetProvider.class, true);
+        // Update card
+        updateInstances(app, wm, BlueOSSummaryWidgetProvider.SummaryCard.class, false);
+    }
+
+    private static void updateInstances(Context app, AppWidgetManager wm, Class<?> cls, boolean isTransparent) {
+        ComponentName provider = new ComponentName(app, cls);
         int[] ids = wm.getAppWidgetIds(provider);
         if (ids == null || ids.length == 0) return;
 
@@ -58,7 +66,12 @@ public class BlueOSSummaryWidgetProvider extends AppWidgetProvider {
         boolean darkText = colors != null
                 && (colors.getColorHints() & WallpaperColors.HINT_SUPPORTS_DARK_TEXT) != 0;
 
-        int layoutId = darkText ? R.layout.blueos_summary_widget_dark_text : R.layout.blueos_summary_widget_light_text;
+        int layoutId;
+        if (isTransparent) {
+            layoutId = darkText ? R.layout.blueos_summary_widget_dark_text : R.layout.blueos_summary_widget_light_text;
+        } else {
+            layoutId = R.layout.blueos_summary_widget_card;
+        }
 
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         int greetingRes;
@@ -73,12 +86,13 @@ public class BlueOSSummaryWidgetProvider extends AppWidgetProvider {
         }
 
         String nextInfo = getNextEventOrAlarm(app);
+        Locale locale = LanguageManager.getLocale(app);
 
         for (int id : ids) {
             RemoteViews rv = new RemoteViews(app.getPackageName(), layoutId);
             rv.setTextViewText(R.id.blueos_summary_greeting, app.getString(greetingRes));
 
-            String dateStr = DateFormat.format(DateFormat.getBestDateTimePattern(Locale.getDefault(), "EEEE, d MMMM"), new Date()).toString();
+            String dateStr = DateFormat.format(DateFormat.getBestDateTimePattern(locale, "EEEE, d MMMM"), new Date()).toString();
             rv.setTextViewText(R.id.blueos_summary_date, dateStr);
 
             if (nextInfo != null && !nextInfo.isEmpty()) {
@@ -95,12 +109,14 @@ public class BlueOSSummaryWidgetProvider extends AppWidgetProvider {
                 it = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
             }
             rv.setOnClickPendingIntent(android.R.id.background,
-                    PendingIntent.getActivity(app, 0, it, PendingIntent.FLAG_IMMUTABLE));
+                    PendingIntent.getActivity(app, id, it, PendingIntent.FLAG_IMMUTABLE));
 
-            WidgetThemeManager.applyBackground(app, rv);
+            WidgetThemeManager.applyBackground(app, rv, isTransparent);
             wm.updateAppWidget(id, rv);
         }
     }
+
+    public static class SummaryCard extends BlueOSSummaryWidgetProvider {}
 
     private static String getNextEventOrAlarm(Context context) {
         try {

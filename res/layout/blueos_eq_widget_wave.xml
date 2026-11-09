@@ -1,43 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BlueOS equalizer widget: two waves and the title. BlueOSVisualizerView draws in the launcher. -->
+<!-- BlueOS equalizer widget: wave (transparent wallpaper visualizer) -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/blueos_widget_outline"
-    android:clipToOutline="true">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/blueos_widget_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@null"
-        android:scaleType="fitXY"
-        android:src="@drawable/blueos_widget_card" />
+        android:visibility="gone" />
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/blueos_eq_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="12dp">
-
-        <ImageView
-            android:id="@+id/blueos_eq_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/blueos_media_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:ellipsize="end"
-            android:fontFamily="google-sans-text"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/blueos_media_widget_idle"
-            android:textColor="@color/blueos_widget_on_surface_variant"
-            android:textSize="12sp" />
-    </LinearLayout>
+        android:padding="16dp" />
 </FrameLayout>

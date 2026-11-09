@@ -74,6 +74,8 @@
             android:id="@+id/blueos_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:format12Hour="EEE, d MMM"
+            android:format24Hour="EEE, d MMM"
             android:singleLine="true"
             android:textColor="@color/blueos_widget_on_surface_variant"
             android:textSize="13sp" />
@@ -92,6 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:singleLine="true"
+            android:text="07:00"
             android:textColor="@color/blueos_widget_on_surface_variant"
             android:textSize="13sp" />
     </LinearLayout>

@@ -27,6 +27,10 @@ public abstract class BlueOSBatteryWidgetProvider extends AppWidgetProvider {
 
     protected abstract int getLayoutId();
 
+    protected boolean isOutlineOnly() {
+        return false;
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
@@ -111,12 +115,18 @@ public abstract class BlueOSBatteryWidgetProvider extends AppWidgetProvider {
             if (sLevel < 0) sLevel = 100;
         }
 
-        updateProvider(app, wm, BlueOSBatteryWidgetProvider.Large.class, R.layout.blueos_battery_widget_large);
-        updateProvider(app, wm, BlueOSBatteryWidgetProvider.Medium.class, R.layout.blueos_battery_widget_medium);
-        updateProvider(app, wm, BlueOSBatteryWidgetProvider.Small.class, R.layout.blueos_battery_widget_small);
+        // Filled card variants
+        updateProvider(app, wm, BlueOSBatteryWidgetProvider.Large.class, R.layout.blueos_battery_widget_large, false);
+        updateProvider(app, wm, BlueOSBatteryWidgetProvider.Medium.class, R.layout.blueos_battery_widget_medium, false);
+        updateProvider(app, wm, BlueOSBatteryWidgetProvider.Small.class, R.layout.blueos_battery_widget_small, false);
+
+        // Minimalist outline variants
+        updateProvider(app, wm, BlueOSBatteryWidgetProvider.LargeOutline.class, R.layout.blueos_battery_widget_large_outline, true);
+        updateProvider(app, wm, BlueOSBatteryWidgetProvider.MediumOutline.class, R.layout.blueos_battery_widget_medium_outline, true);
+        updateProvider(app, wm, BlueOSBatteryWidgetProvider.SmallOutline.class, R.layout.blueos_battery_widget_small_outline, true);
     }
 
-    private static void updateProvider(Context app, AppWidgetManager wm, Class<?> cls, int layoutId) {
+    private static void updateProvider(Context app, AppWidgetManager wm, Class<?> cls, int layoutId, boolean isOutline) {
         ComponentName provider = new ComponentName(app, cls);
         int[] ids = wm.getAppWidgetIds(provider);
         if (ids == null || ids.length == 0) return;
@@ -154,7 +164,7 @@ public abstract class BlueOSBatteryWidgetProvider extends AppWidgetProvider {
                         PendingIntent.getActivity(app, 0, usage, PendingIntent.FLAG_IMMUTABLE)
                 );
             }
-            WidgetThemeManager.applyBackground(app, rv);
+            WidgetThemeManager.applyBackground(app, rv, isOutline);
             wm.updateAppWidget(id, rv);
         }
     }
@@ -166,6 +176,18 @@ public abstract class BlueOSBatteryWidgetProvider extends AppWidgetProvider {
         }
     }
 
+    public static class SmallOutline extends BlueOSBatteryWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_battery_widget_small_outline;
+        }
+
+        @Override
+        protected boolean isOutlineOnly() {
+            return true;
+        }
+    }
+
     public static class Medium extends BlueOSBatteryWidgetProvider {
         @Override
         protected int getLayoutId() {
@@ -173,10 +195,34 @@ public abstract class BlueOSBatteryWidgetProvider extends AppWidgetProvider {
         }
     }
 
+    public static class MediumOutline extends BlueOSBatteryWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_battery_widget_medium_outline;
+        }
+
+        @Override
+        protected boolean isOutlineOnly() {
+            return true;
+        }
+    }
+
     public static class Large extends BlueOSBatteryWidgetProvider {
         @Override
         protected int getLayoutId() {
             return R.layout.blueos_battery_widget_large;
+        }
+    }
+
+    public static class LargeOutline extends BlueOSBatteryWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_battery_widget_large_outline;
+        }
+
+        @Override
+        protected boolean isOutlineOnly() {
+            return true;
         }
     }
 }

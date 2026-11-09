@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">BlueOS Widgets</string>
-    <string name="blueos_clock_widget_card">Clock: Card</string>
+    <string name="blueos_clock_widget_card">Clock: Card (Card)</string>
     <string name="blueos_clock_widget_card_description">Time with halo, date and next alarm on card</string>
-    <string name="blueos_clock_widget_halo">Clock: Halo</string>
-    <string name="blueos_clock_widget_halo_description">Time with halo, no background</string>
-    <string name="blueos_clock_widget_tile">Clock: Tile</string>
+    <string name="blueos_clock_widget_halo">Clock: Halo (Transparent)</string>
+    <string name="blueos_clock_widget_halo_card">Clock: Halo (Card)</string>
+    <string name="blueos_clock_widget_halo_description">Time with Kivotos halo</string>
+    <string name="blueos_clock_widget_tile">Clock: Tile (Card)</string>
+    <string name="blueos_clock_widget_tile_trans">Clock: Tile (Transparent)</string>
     <string name="blueos_clock_widget_tile_description">Hours over minutes under halo</string>
-    <string name="blueos_clock_widget_alarm">Clock: Next alarm</string>
+    <string name="blueos_clock_widget_alarm">Clock: Alarm (Card)</string>
+    <string name="blueos_clock_widget_alarm_trans">Clock: Alarm (Transparent)</string>
     <string name="blueos_clock_widget_alarm_description">When the next alarm rings</string>
     <string name="blueos_clock_widget_no_alarms">No alarms</string>
 
@@ -105,4 +108,58 @@
     <string name="blueos_widget_duo">Arona &amp; Plana Duo</string>
     <string name="blueos_widget_system">System Monitor</string>
     <string name="blueos_media_cassette">Player: Retro Cassette</string>
+
+    <string name="blueos_clock_widget_card_wide">Clock: Wide Card</string>
+    <string name="blueos_clock_widget_moe">Clock: Anime Moe</string>
+    <string name="blueos_calendar_month">Calendar: Monthly Grid</string>
+    <string name="blueos_battery_widget_small">Battery: 1x1</string>
+    <string name="blueos_battery_widget_medium">Battery: 2x2</string>
+    <string name="blueos_battery_widget_large">Battery: Detailed</string>
+    <string name="blueos_media_widget_small">Player: Compact 2x1</string>
+    <string name="blueos_media_widget_square">Player: Square 2x2</string>
+    <string name="blueos_media_widget_wide">Player: Bar 4x1</string>
+    <string name="blueos_media_widget_large">Player: Large 4x2</string>
+    <string name="blueos_media_widget_vinyl">Player: Vinyl Record</string>
+    <string name="blueos_media_service_name">BlueOS Media Controller</string>
+
+    <string name="onboarding_welcome_title">✦ KIVOTOS BLUEOS ✦</string>
+    <string name="onboarding_title">Select Language</string>
+    <string name="onboarding_subtitle">Choose your interface and widget language:</string>
+    <string name="lang_ru">Русский</string>
+    <string name="lang_en">English</string>
+    <string name="onboarding_btn_continue">Continue</string>
+    <string name="settings_lang_title">LANGUAGE &amp; LOCALIZATION</string>
+    <string name="settings_lang_desc">Explicit widget and interface language:</string>
+    <string name="settings_style_title">WIDGET STYLE &amp; APPEARANCE</string>
+    <string name="settings_style_desc">Background fill, plate color and opacity:</string>
+    <string name="style_fill_outline">✦ Filled + Outline</string>
+    <string name="style_minimal_outline">Minimalist Outline</string>
+    <string name="plate_color_title">Plate Color</string>
+    <string name="plate_alpha_title">Plate Opacity</string>
+    <string name="color_custom_hex">Custom HEX</string>
+
+    <string name="blueos_clock_widget_moe_card">Clock: Kivotos Moe (Card)</string>
+    <string name="blueos_calendar_month_trans">Calendar: Month Grid (Transparent)</string>
+    <string name="blueos_summary_widget_card">Daily Summary (Card)</string>
+    <string name="blueos_eq_bars_card">Equalizer: Bars (Card)</string>
+    <string name="blueos_eq_ring_card">Equalizer: Ring (Card)</string>
+    <string name="blueos_eq_wave_card">Equalizer: Wave (Card)</string>
+    <string name="blueos_eq_full_trans">Equalizer: Player (Transparent)</string>
+    <string name="blueos_widget_arona_trans">Arona Companion (Transparent)</string>
+    <string name="blueos_widget_plana_trans">Plana Companion (Transparent)</string>
+    <string name="blueos_widget_duo_trans">Duo: Arona &amp; Plana (Transparent)</string>
+    <string name="blueos_toggles_widget_trans">Quick Toggles (Transparent)</string>
+
+    <string name="blueos_clock_widget_card_outline">Clock: Card (Transparent)</string>
+    <string name="blueos_clock_widget_card_wide_outline">Clock: Wide (Transparent)</string>
+    <string name="blueos_date_widget_outline">Date &amp; Events (Transparent)</string>
+    <string name="blueos_battery_widget_small_outline">Battery: 1x1 (Transparent)</string>
+    <string name="blueos_battery_widget_medium_outline">Battery: 2x2 (Transparent)</string>
+    <string name="blueos_battery_widget_large_outline">Battery: Detailed (Transparent)</string>
+    <string name="blueos_media_widget_small_outline">Player: Compact (Transparent)</string>
+    <string name="blueos_media_widget_square_outline">Player: Square (Transparent)</string>
+    <string name="blueos_media_widget_wide_outline">Player: Bar (Transparent)</string>
+    <string name="blueos_media_widget_large_outline">Player: Large (Transparent)</string>
+    <string name="blueos_widget_system_outline">System Monitor (Transparent)</string>
+    <string name="blueos_countdown_widget_outline">Countdown (Transparent)</string>
 </resources>

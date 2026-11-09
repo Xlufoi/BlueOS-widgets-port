@@ -124,12 +124,19 @@ public abstract class BlueOSEqualizerWidgetProvider extends AppWidgetProvider {
 
         boolean playing = BlueOSMediaWidgetProvider.isPlaying(app);
 
-        boolean b1 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.Bars.class, R.layout.blueos_eq_widget_bars, STYLE_BARS, playing, amp);
-        boolean b2 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.Ring.class, R.layout.blueos_eq_widget_ring, STYLE_RING, playing, amp);
-        boolean b3 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.Wave.class, R.layout.blueos_eq_widget_wave, STYLE_WAVE, playing, amp);
-        boolean b4 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.Full.class, R.layout.blueos_eq_widget_full, STYLE_FULL, playing, amp);
+        // Transparent variants
+        boolean b1 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.Bars.class, R.layout.blueos_eq_widget_bars, STYLE_BARS, playing, amp, true);
+        boolean b2 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.Ring.class, R.layout.blueos_eq_widget_ring, STYLE_RING, playing, amp, true);
+        boolean b3 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.Wave.class, R.layout.blueos_eq_widget_wave, STYLE_WAVE, playing, amp, true);
+        boolean b4 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.FullTransparent.class, R.layout.blueos_eq_widget_full_trans, STYLE_FULL, playing, amp, true);
 
-        boolean hasAnyWidgets = b1 || b2 || b3 || b4;
+        // Card variants
+        boolean c1 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.BarsCard.class, R.layout.blueos_eq_widget_bars_card, STYLE_BARS, playing, amp, false);
+        boolean c2 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.RingCard.class, R.layout.blueos_eq_widget_ring_card, STYLE_RING, playing, amp, false);
+        boolean c3 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.WaveCard.class, R.layout.blueos_eq_widget_wave_card, STYLE_WAVE, playing, amp, false);
+        boolean c4 = updateStyle(app, wm, BlueOSEqualizerWidgetProvider.Full.class, R.layout.blueos_eq_widget_full, STYLE_FULL, playing, amp, false);
+
+        boolean hasAnyWidgets = b1 || b2 || b3 || b4 || c1 || c2 || c3 || c4;
 
         if ((playing || amp > 0f) && hasAnyWidgets && !sIsAnimating) {
             sIsAnimating = true;
@@ -149,9 +156,14 @@ public abstract class BlueOSEqualizerWidgetProvider extends AppWidgetProvider {
         boolean b1 = updatePartial(app, wm, BlueOSEqualizerWidgetProvider.Bars.class, R.layout.blueos_eq_widget_bars, STYLE_BARS, playing, amp);
         boolean b2 = updatePartial(app, wm, BlueOSEqualizerWidgetProvider.Ring.class, R.layout.blueos_eq_widget_ring, STYLE_RING, playing, amp);
         boolean b3 = updatePartial(app, wm, BlueOSEqualizerWidgetProvider.Wave.class, R.layout.blueos_eq_widget_wave, STYLE_WAVE, playing, amp);
-        boolean b4 = updatePartial(app, wm, BlueOSEqualizerWidgetProvider.Full.class, R.layout.blueos_eq_widget_full, STYLE_FULL, playing, amp);
+        boolean b4 = updatePartial(app, wm, BlueOSEqualizerWidgetProvider.FullTransparent.class, R.layout.blueos_eq_widget_full_trans, STYLE_FULL, playing, amp);
 
-        return b1 || b2 || b3 || b4;
+        boolean c1 = updatePartial(app, wm, BlueOSEqualizerWidgetProvider.BarsCard.class, R.layout.blueos_eq_widget_bars_card, STYLE_BARS, playing, amp);
+        boolean c2 = updatePartial(app, wm, BlueOSEqualizerWidgetProvider.RingCard.class, R.layout.blueos_eq_widget_ring_card, STYLE_RING, playing, amp);
+        boolean c3 = updatePartial(app, wm, BlueOSEqualizerWidgetProvider.WaveCard.class, R.layout.blueos_eq_widget_wave_card, STYLE_WAVE, playing, amp);
+        boolean c4 = updatePartial(app, wm, BlueOSEqualizerWidgetProvider.Full.class, R.layout.blueos_eq_widget_full, STYLE_FULL, playing, amp);
+
+        return b1 || b2 || b3 || b4 || c1 || c2 || c3 || c4;
     }
 
     private static boolean updatePartial(Context app, AppWidgetManager wm, Class<?> cls, int layoutId, int style, boolean playing, float amp) {
@@ -170,7 +182,7 @@ public abstract class BlueOSEqualizerWidgetProvider extends AppWidgetProvider {
         return true;
     }
 
-    private static boolean updateStyle(Context app, AppWidgetManager wm, Class<?> cls, int layoutId, int style, boolean playing, float amp) {
+    private static boolean updateStyle(Context app, AppWidgetManager wm, Class<?> cls, int layoutId, int style, boolean playing, float amp, boolean isTransparent) {
         ComponentName provider = new ComponentName(app, cls);
         int[] ids = wm.getAppWidgetIds(provider);
         if (ids == null || ids.length == 0) return false;
@@ -219,15 +231,15 @@ public abstract class BlueOSEqualizerWidgetProvider extends AppWidgetProvider {
                 int playIcon = playing ? R.drawable.blueos_ic_pause : R.drawable.blueos_ic_play;
                 rv.setImageViewResource(R.id.blueos_media_play_pause, playIcon);
                 rv.setOnClickPendingIntent(R.id.blueos_media_play_pause,
-                        BlueOSMediaWidgetProvider.makeAction(app, BlueOSMediaWidgetProvider.ACTION_PLAY_PAUSE, 30));
+                        BlueOSMediaWidgetProvider.makeAction(app, BlueOSMediaWidgetProvider.ACTION_PLAY_PAUSE, id * 10 + 6));
             } catch (Throwable ignored) {}
 
             if (style != STYLE_FULL) {
                 rv.setOnClickPendingIntent(android.R.id.background,
-                        BlueOSMediaWidgetProvider.makeAction(app, BlueOSMediaWidgetProvider.ACTION_PLAY_PAUSE, 31));
+                        BlueOSMediaWidgetProvider.makeAction(app, BlueOSMediaWidgetProvider.ACTION_PLAY_PAUSE, id * 10 + 7));
             }
 
-            WidgetThemeManager.applyBackground(app, rv);
+            WidgetThemeManager.applyBackground(app, rv, isTransparent);
             wm.updateAppWidget(id, rv);
         }
 
@@ -365,10 +377,34 @@ public abstract class BlueOSEqualizerWidgetProvider extends AppWidgetProvider {
         }
     }
 
+    public static class BarsCard extends BlueOSEqualizerWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_eq_widget_bars_card;
+        }
+
+        @Override
+        protected int getStyle() {
+            return STYLE_BARS;
+        }
+    }
+
     public static class Ring extends BlueOSEqualizerWidgetProvider {
         @Override
         protected int getLayoutId() {
             return R.layout.blueos_eq_widget_ring;
+        }
+
+        @Override
+        protected int getStyle() {
+            return STYLE_RING;
+        }
+    }
+
+    public static class RingCard extends BlueOSEqualizerWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_eq_widget_ring_card;
         }
 
         @Override
@@ -389,10 +425,34 @@ public abstract class BlueOSEqualizerWidgetProvider extends AppWidgetProvider {
         }
     }
 
+    public static class WaveCard extends BlueOSEqualizerWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_eq_widget_wave_card;
+        }
+
+        @Override
+        protected int getStyle() {
+            return STYLE_WAVE;
+        }
+    }
+
     public static class Full extends BlueOSEqualizerWidgetProvider {
         @Override
         protected int getLayoutId() {
             return R.layout.blueos_eq_widget_full;
+        }
+
+        @Override
+        protected int getStyle() {
+            return STYLE_FULL;
+        }
+    }
+
+    public static class FullTransparent extends BlueOSEqualizerWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_eq_widget_full_trans;
         }
 
         @Override

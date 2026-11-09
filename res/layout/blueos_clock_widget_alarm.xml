@@ -44,6 +44,7 @@
                 android:fontVariationSettings="'wght' 600"
                 android:includeFontPadding="false"
                 android:singleLine="true"
+                android:text="07:00"
                 android:textColor="@color/blueos_widget_on_primary_container"
                 android:textSize="26sp" />
 
@@ -56,6 +57,7 @@
                 android:ellipsize="end"
                 android:fontFamily="google-sans-text"
                 android:singleLine="true"
+                android:text="@string/blueos_countdown_today"
                 android:textColor="@color/blueos_widget_on_primary_container"
                 android:textSize="13sp" />
         </LinearLayout>

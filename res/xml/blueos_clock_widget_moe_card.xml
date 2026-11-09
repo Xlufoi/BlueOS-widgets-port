@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/blueos_clock_moe_desc"
+    android:initialLayout="@layout/blueos_clock_widget_moe_card"
+    android:previewLayout="@layout/blueos_clock_widget_moe_card"
+    android:previewImage="@drawable/blueos_preview_clock_moe_card"
+    android:minWidth="140dp"
+    android:minHeight="70dp"
+    android:targetCellWidth="2"
+    android:targetCellHeight="1"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen" />

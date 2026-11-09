@@ -3,6 +3,7 @@ package org.blueos.widgets;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -32,14 +33,34 @@ public class BlueOSCalendarMonthWidgetProvider extends AppWidgetProvider {
             "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
     };
 
+    protected boolean isTransparent() {
+        return false;
+    }
+
     @Override
     public void onUpdate(Context context, AppWidgetManager wm, int[] ids) {
         for (int id : ids) {
-            updateWidget(context, wm, id);
+            updateWidget(context, wm, id, isTransparent());
+        }
+    }
+
+    public static void push(Context context) {
+        AppWidgetManager wm = AppWidgetManager.getInstance(context);
+        int[] idsCard = wm.getAppWidgetIds(new ComponentName(context, BlueOSCalendarMonthWidgetProvider.class));
+        if (idsCard != null && idsCard.length > 0) {
+            new BlueOSCalendarMonthWidgetProvider().onUpdate(context, wm, idsCard);
+        }
+        int[] idsTrans = wm.getAppWidgetIds(new ComponentName(context, BlueOSCalendarMonthWidgetProvider.Transparent.class));
+        if (idsTrans != null && idsTrans.length > 0) {
+            new BlueOSCalendarMonthWidgetProvider.Transparent().onUpdate(context, wm, idsTrans);
         }
     }
 
     public static void updateWidget(Context context, AppWidgetManager wm, int id) {
+        updateWidget(context, wm, id, false);
+    }
+
+    public static void updateWidget(Context context, AppWidgetManager wm, int id, boolean isTransparent) {
         RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.blueos_calendar_month_widget);
 
         Bitmap gridBmp = renderMonthGrid(context, 700, 500);
@@ -53,8 +74,15 @@ public class BlueOSCalendarMonthWidgetProvider extends AppWidgetProvider {
                     PendingIntent.getActivity(context, id, open, PendingIntent.FLAG_IMMUTABLE));
         }
 
-        WidgetThemeManager.applyBackground(context, rv);
+        WidgetThemeManager.applyBackground(context, rv, isTransparent);
         wm.updateAppWidget(id, rv);
+    }
+
+    public static class Transparent extends BlueOSCalendarMonthWidgetProvider {
+        @Override
+        protected boolean isTransparent() {
+            return true;
+        }
     }
 
     private static Bitmap renderMonthGrid(Context context, int width, int height) {

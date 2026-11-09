@@ -61,6 +61,14 @@ public class BlueOSDateWidgetProvider extends AppWidgetProvider {
         }
     }
 
+    protected int getLayoutId() {
+        return R.layout.blueos_date_widget;
+    }
+
+    protected boolean isOutlineOnly() {
+        return false;
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
@@ -80,9 +88,9 @@ public class BlueOSDateWidgetProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager wm, int[] widgetIds) {
         if (widgetIds.length == 0) return;
         final List<Event> events = loadEvents(context);
-        final RemoteViews rv = buildViews(context, events);
-        WidgetThemeManager.applyBackground(context, rv);
         for (int widgetId : widgetIds) {
+            final RemoteViews rv = buildViews(context, events);
+            WidgetThemeManager.applyBackground(context, rv, isOutlineOnly());
             wm.updateAppWidget(widgetId, rv);
         }
         scheduleRefresh(context, events);
@@ -93,6 +101,10 @@ public class BlueOSDateWidgetProvider extends AppWidgetProvider {
         int[] ids = wm.getAppWidgetIds(new ComponentName(context, BlueOSDateWidgetProvider.class));
         if (ids != null && ids.length > 0) {
             new BlueOSDateWidgetProvider().onUpdate(context, wm, ids);
+        }
+        int[] idsOutline = wm.getAppWidgetIds(new ComponentName(context, BlueOSDateWidgetProvider.Outline.class));
+        if (idsOutline != null && idsOutline.length > 0) {
+            new BlueOSDateWidgetProvider.Outline().onUpdate(context, wm, idsOutline);
         }
     }
 
@@ -105,8 +117,8 @@ public class BlueOSDateWidgetProvider extends AppWidgetProvider {
     }
 
     private RemoteViews buildViews(Context context, List<Event> events) {
-        final RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.blueos_date_widget);
-        final Locale locale = Locale.getDefault();
+        final RemoteViews rv = new RemoteViews(context.getPackageName(), getLayoutId());
+        final Locale locale = LanguageManager.getLocale(context);
         setClockFormat(rv, R.id.blueos_day, "d");
         setClockFormat(rv, R.id.blueos_weekday, DateFormat.getBestDateTimePattern(locale, "EEEE"));
         setClockFormat(rv, R.id.blueos_month, DateFormat.getBestDateTimePattern(locale, "LLLL"));
@@ -225,5 +237,17 @@ public class BlueOSDateWidgetProvider extends AppWidgetProvider {
         final Intent intent = new Intent(ACTION_REFRESH)
                 .setClass(context, BlueOSDateWidgetProvider.class);
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+    }
+
+    public static class Outline extends BlueOSDateWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_date_widget_outline;
+        }
+
+        @Override
+        protected boolean isOutlineOnly() {
+            return true;
+        }
     }
 }

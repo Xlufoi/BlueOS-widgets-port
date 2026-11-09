@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BlueOS equalizer widget: bars around the album art. BlueOSVisualizerView draws itself in the launcher. -->
+<!-- BlueOS equalizer widget: ring (transparent wallpaper visualizer) -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/blueos_widget_outline"
-    android:clipToOutline="true">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/blueos_widget_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@null"
-        android:scaleType="fitXY"
-        android:src="@drawable/blueos_widget_card" />
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/blueos_eq_view"

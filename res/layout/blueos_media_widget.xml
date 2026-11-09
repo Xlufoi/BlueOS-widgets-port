@@ -47,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:singleLine="true"
+                android:text="Blue Archive OST"
                 android:textColor="@color/blueos_widget_on_surface_variant"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -60,6 +61,7 @@
         android:layout_marginTop="10dp"
         android:indeterminate="false"
         android:max="1000"
+        android:progress="450"
         android:progressDrawable="@drawable/blueos_media_progress" />
 
     <LinearLayout
@@ -74,6 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="google-sans-text"
+            android:text="1:30"
             android:textColor="@color/blueos_widget_on_surface_variant"
             android:textSize="11sp" />
 
@@ -84,6 +87,7 @@
             android:layout_weight="1"
             android:fontFamily="google-sans-text"
             android:gravity="end"
+            android:text="3:45"
             android:textColor="@color/blueos_widget_on_surface_variant"
             android:textSize="11sp" />
     </LinearLayout>

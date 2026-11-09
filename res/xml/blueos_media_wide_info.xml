@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/blueos_media_widget_description"
+    android:initialLayout="@layout/blueos_media_widget_wide"
+    android:previewLayout="@layout/blueos_media_widget_wide"
+    android:previewImage="@drawable/blueos_preview_media_wide_card"
+    android:minWidth="250dp"
+    android:minHeight="60dp"
+    android:targetCellWidth="4"
+    android:targetCellHeight="1"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen" />

@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BlueOS countdown widget -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:configure="com.android.calendar.widget.BlueOSCountdownConfigActivity"
     android:description="@string/blueos_countdown_widget_description"
     android:initialLayout="@layout/blueos_countdown_widget"
-    android:minWidth="90dp"
-    android:minHeight="90dp"
-    android:minResizeWidth="90dp"
-    android:minResizeHeight="90dp"
     android:previewLayout="@layout/blueos_countdown_widget"
-    android:resizeMode="horizontal|vertical"
+    android:previewImage="@drawable/blueos_preview_countdown_card"
+    android:minWidth="140dp"
+    android:minHeight="140dp"
     android:targetCellWidth="2"
-    android:targetCellHeight="1"
+    android:targetCellHeight="2"
+    android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
-    android:widgetCategory="home_screen"
-    android:widgetFeatures="reconfigurable" />
+    android:widgetCategory="home_screen" />

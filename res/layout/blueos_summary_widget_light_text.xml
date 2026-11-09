@@ -21,6 +21,7 @@
             android:fontVariationSettings="'wght' 600"
             android:includeFontPadding="false"
             android:singleLine="true"
+            android:text="@string/blueos_summary_day"
             android:textColor="@color/blueos_color_on_surface_dark"
             android:textSize="24sp" />
 

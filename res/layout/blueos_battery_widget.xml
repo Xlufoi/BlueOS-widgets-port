@@ -20,6 +20,7 @@
             android:layout_height="match_parent"
             android:indeterminate="false"
             android:max="100"
+            android:progress="85"
             android:progressDrawable="@drawable/blueos_battery_ring" />
 
         <TextView
@@ -31,6 +32,7 @@
             android:fontVariationSettings="'wght' 600"
             android:includeFontPadding="false"
             android:singleLine="true"
+            android:text="85%"
             android:textColor="@color/blueos_widget_on_surface"
             android:textSize="16sp" />
     </FrameLayout>

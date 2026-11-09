@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">BlueOS Widgets</string>
-    <string name="blueos_clock_widget_card">Часы: карточка</string>
+    <string name="blueos_clock_widget_card">Часы: карточка (С подложкой)</string>
     <string name="blueos_clock_widget_card_description">Время с ореолом, дата и ближайший будильник на карточке</string>
-    <string name="blueos_clock_widget_halo">Часы: ореол</string>
-    <string name="blueos_clock_widget_halo_description">Время с ореолом, без подложки</string>
-    <string name="blueos_clock_widget_tile">Часы: плитка</string>
+    <string name="blueos_clock_widget_halo">Часы: ореол (Прозрачные)</string>
+    <string name="blueos_clock_widget_halo_card">Часы: ореол (С подложкой)</string>
+    <string name="blueos_clock_widget_halo_description">Время с ореолом Кивотоса</string>
+    <string name="blueos_clock_widget_tile">Часы: плитка (С подложкой)</string>
+    <string name="blueos_clock_widget_tile_trans">Часы: плитка (Прозрачные)</string>
     <string name="blueos_clock_widget_tile_description">Часы над минутами под ореолом</string>
-    <string name="blueos_clock_widget_alarm">Будильник</string>
+    <string name="blueos_clock_widget_alarm">Будильник (С подложкой)</string>
+    <string name="blueos_clock_widget_alarm_trans">Будильник (Прозрачный)</string>
     <string name="blueos_clock_widget_alarm_description">Когда зазвонит ближайший будильник</string>
     <string name="blueos_clock_widget_no_alarms">Будильников нет</string>
 
@@ -109,4 +112,58 @@
     <string name="blueos_widget_duo">Дуэт: Арона и Плана</string>
     <string name="blueos_widget_system">Монитор системы</string>
     <string name="blueos_media_cassette">Плеер: Аудиокассета</string>
+
+    <string name="blueos_clock_widget_card_wide">Часы: широкая карточка</string>
+    <string name="blueos_clock_widget_moe">Часы: Kivotos Moe</string>
+    <string name="blueos_calendar_month">Календарь: Месячная сетка</string>
+    <string name="blueos_battery_widget_small">Батарея: 1x1</string>
+    <string name="blueos_battery_widget_medium">Батарея: 2x2</string>
+    <string name="blueos_battery_widget_large">Батарея: Подробная</string>
+    <string name="blueos_media_widget_small">Плеер: Компактный 2x1</string>
+    <string name="blueos_media_widget_square">Плеер: Квадратный 2x2</string>
+    <string name="blueos_media_widget_wide">Плеер: Полоса 4x1</string>
+    <string name="blueos_media_widget_large">Плеер: Большой 4x2</string>
+    <string name="blueos_media_widget_vinyl">Плеер: Виниловая пластинка</string>
+    <string name="blueos_media_service_name">Контроллер плеера BlueOS</string>
+
+    <string name="onboarding_welcome_title">✦ KIVOTOS BLUEOS ✦</string>
+    <string name="onboarding_title">Выбор языка</string>
+    <string name="onboarding_subtitle">Выберите язык интерфейса и виджетов:</string>
+    <string name="lang_ru">Русский</string>
+    <string name="lang_en">English</string>
+    <string name="onboarding_btn_continue">Продолжить</string>
+    <string name="settings_lang_title">ЯЗЫК И ЛОКАЛИЗАЦИЯ</string>
+    <string name="settings_lang_desc">Язык интерфейса и виджетов:</string>
+    <string name="settings_style_title">ТЕМА И ОФОРМЛЕНИЕ ВИДЖЕТОВ</string>
+    <string name="settings_style_desc">Стиль подложки, цвет и прозрачность:</string>
+    <string name="style_fill_outline">✦ Заливка + обводка</string>
+    <string name="style_minimal_outline">Чистый контур</string>
+    <string name="plate_color_title">Цвет подложки</string>
+    <string name="plate_alpha_title">Прозрачность подложки</string>
+    <string name="color_custom_hex">Свой HEX</string>
+
+    <string name="blueos_clock_widget_moe_card">Часы: Kivotos Moe (С подложкой)</string>
+    <string name="blueos_calendar_month_trans">Календарь: Месячная сетка (Прозрачный)</string>
+    <string name="blueos_summary_widget_card">Сводка (С подложкой)</string>
+    <string name="blueos_eq_bars_card">Эквалайзер: столбики (С подложкой)</string>
+    <string name="blueos_eq_ring_card">Эквалайзер: ореол (С подложкой)</string>
+    <string name="blueos_eq_wave_card">Эквалайзер: волна (С подложкой)</string>
+    <string name="blueos_eq_full_trans">Эквалайзер: плеер (Прозрачный)</string>
+    <string name="blueos_widget_arona_trans">Компаньон Арона (Прозрачный)</string>
+    <string name="blueos_widget_plana_trans">Компаньон Плана (Прозрачный)</string>
+    <string name="blueos_widget_duo_trans">Дуэт: Арона и Плана (Прозрачный)</string>
+    <string name="blueos_toggles_widget_trans">Быстрые переключатели (Прозрачные)</string>
+
+    <string name="blueos_clock_widget_card_outline">Часы: Карточка (Прозрачные)</string>
+    <string name="blueos_clock_widget_card_wide_outline">Часы: Широкие (Прозрачные)</string>
+    <string name="blueos_date_widget_outline">Дата и календарь (Прозрачные)</string>
+    <string name="blueos_battery_widget_small_outline">Батарея: 1x1 (Прозрачная)</string>
+    <string name="blueos_battery_widget_medium_outline">Батарея: 2x2 (Прозрачная)</string>
+    <string name="blueos_battery_widget_large_outline">Батарея: Подробная (Прозрачная)</string>
+    <string name="blueos_media_widget_small_outline">Плеер: Компактный (Прозрачный)</string>
+    <string name="blueos_media_widget_square_outline">Плеер: Квадратный (Прозрачный)</string>
+    <string name="blueos_media_widget_wide_outline">Плеер: Полоса (Прозрачный)</string>
+    <string name="blueos_media_widget_large_outline">Плеер: Большой (Прозрачный)</string>
+    <string name="blueos_widget_system_outline">Монитор системы (Прозрачный)</string>
+    <string name="blueos_countdown_widget_outline">Обратный отсчет (Прозрачный)</string>
 </resources>

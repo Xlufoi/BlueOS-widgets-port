@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BlueOS music widget, 3x2 and larger: outline minimalist -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/blueos_widget_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <FrameLayout
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:background="@drawable/blueos_media_art_bg"
+            android:clipToOutline="true">
+
+            <ImageView
+                android:id="@+id/blueos_media_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:padding="24dp"
+                android:src="@drawable/blueos_ic_music_note" />
+
+            <ImageView
+                android:id="@+id/blueos_media_art"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/blueos_media_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="google-sans-text-medium"
+                android:singleLine="true"
+                android:text="@string/blueos_media_widget_idle"
+                android:textColor="@color/blueos_widget_on_surface"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/blueos_media_artist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0.75"
+                android:ellipsize="end"
+                android:fontFamily="google-sans-text"
+                android:singleLine="true"
+                android:textColor="@color/blueos_widget_on_surface_variant"
+                android:textSize="13sp" />
+
+            <ProgressBar
+                android:id="@+id/blueos_media_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="12dp"
+                android:indeterminate="false"
+                android:max="1000"
+                android:progress="450"
+                android:progressDrawable="@drawable/blueos_media_progress_accent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:alpha="0.7"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/blueos_media_elapsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="google-sans-text"
+                    android:text="1:30"
+                    android:textColor="@color/blueos_widget_on_surface_variant"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/blueos_media_duration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="google-sans-text"
+                    android:gravity="end"
+                    android:text="3:45"
+                    android:textColor="@color/blueos_widget_on_surface_variant"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/blueos_media_previous"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/blueos_media_widget_previous"
+                    android:padding="8dp"
+                    android:src="@drawable/blueos_ic_skip_previous"
+                    android:tint="@color/blueos_widget_on_surface" />
+
+                <ImageView
+                    android:id="@+id/blueos_media_play_pause"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/blueos_media_play_bg"
+                    android:contentDescription="@string/blueos_media_widget_play"
+                    android:padding="10dp"
+                    android:src="@drawable/blueos_ic_play"
+                    android:tint="@color/blueos_widget_on_primary" />
+
+                <ImageView
+                    android:id="@+id/blueos_media_next"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/blueos_media_widget_next"
+                    android:padding="8dp"
+                    android:src="@drawable/blueos_ic_skip_next"
+                    android:tint="@color/blueos_widget_on_surface" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

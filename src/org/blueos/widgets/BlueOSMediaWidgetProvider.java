@@ -56,9 +56,13 @@ public abstract class BlueOSMediaWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         init(context);
-        String action = intent != null ? intent.getAction() : null;
-        if (action != null) {
-            onAction(context, action);
+        if (intent != null) {
+            String action = intent.getAction();
+            if (ACTION_PLAY_PAUSE.equals(action)
+                    || ACTION_PREVIOUS.equals(action)
+                    || ACTION_NEXT.equals(action)) {
+                onAction(context, action);
+            }
         }
         pushAll(context);
     }
@@ -212,6 +216,13 @@ public abstract class BlueOSMediaWidgetProvider extends AppWidgetProvider {
     }
 
     public static void onAction(Context context, String action) {
+        if (action == null) return;
+        if (!ACTION_PLAY_PAUSE.equals(action)
+                && !ACTION_PREVIOUS.equals(action)
+                && !ACTION_NEXT.equals(action)) {
+            return;
+        }
+
         init(context);
         boolean handled = false;
 
@@ -238,17 +249,25 @@ public abstract class BlueOSMediaWidgetProvider extends AppWidgetProvider {
             } catch (Throwable ignored) {}
         }
 
+        // Only dispatch hardware media keys if an explicit user button was pressed AND sController did not handle it
         if (!handled) {
             try {
                 AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
                 if (am != null) {
-                    int keyCode = KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE;
-                    if (ACTION_PREVIOUS.equals(action)) keyCode = KeyEvent.KEYCODE_MEDIA_PREVIOUS;
-                    else if (ACTION_NEXT.equals(action)) keyCode = KeyEvent.KEYCODE_MEDIA_NEXT;
+                    int keyCode = 0;
+                    if (ACTION_PLAY_PAUSE.equals(action)) {
+                        keyCode = KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE;
+                    } else if (ACTION_PREVIOUS.equals(action)) {
+                        keyCode = KeyEvent.KEYCODE_MEDIA_PREVIOUS;
+                    } else if (ACTION_NEXT.equals(action)) {
+                        keyCode = KeyEvent.KEYCODE_MEDIA_NEXT;
+                    }
 
-                    long now = SystemClock.uptimeMillis();
-                    am.dispatchMediaKeyEvent(new KeyEvent(now, now, KeyEvent.ACTION_DOWN, keyCode, 0));
-                    am.dispatchMediaKeyEvent(new KeyEvent(now, now, KeyEvent.ACTION_UP, keyCode, 0));
+                    if (keyCode != 0) {
+                        long now = SystemClock.uptimeMillis();
+                        am.dispatchMediaKeyEvent(new KeyEvent(now, now, KeyEvent.ACTION_DOWN, keyCode, 0));
+                        am.dispatchMediaKeyEvent(new KeyEvent(now, now, KeyEvent.ACTION_UP, keyCode, 0));
+                    }
                 }
             } catch (Throwable ignored) {}
         }
@@ -266,13 +285,20 @@ public abstract class BlueOSMediaWidgetProvider extends AppWidgetProvider {
         Context app = context.getApplicationContext();
         AppWidgetManager wm = AppWidgetManager.getInstance(app);
 
-        updateVariant(app, wm, BlueOSMediaWidgetProvider.Small.class, R.layout.blueos_media_widget_small);
-        updateVariant(app, wm, BlueOSMediaWidgetProvider.Square.class, R.layout.blueos_media_widget_square);
-        updateVariant(app, wm, BlueOSMediaWidgetProvider.Wide.class, R.layout.blueos_media_widget_wide);
-        updateVariant(app, wm, BlueOSMediaWidgetProvider.Large.class, R.layout.blueos_media_widget_large);
+        // Filled card variants
+        updateVariant(app, wm, BlueOSMediaWidgetProvider.Small.class, R.layout.blueos_media_widget_small, false);
+        updateVariant(app, wm, BlueOSMediaWidgetProvider.Square.class, R.layout.blueos_media_widget_square, false);
+        updateVariant(app, wm, BlueOSMediaWidgetProvider.Wide.class, R.layout.blueos_media_widget_wide, false);
+        updateVariant(app, wm, BlueOSMediaWidgetProvider.Large.class, R.layout.blueos_media_widget_large, false);
+
+        // Minimalist outline variants
+        updateVariant(app, wm, BlueOSMediaWidgetProvider.SmallOutline.class, R.layout.blueos_media_widget_small_outline, true);
+        updateVariant(app, wm, BlueOSMediaWidgetProvider.SquareOutline.class, R.layout.blueos_media_widget_square_outline, true);
+        updateVariant(app, wm, BlueOSMediaWidgetProvider.WideOutline.class, R.layout.blueos_media_widget_wide_outline, true);
+        updateVariant(app, wm, BlueOSMediaWidgetProvider.LargeOutline.class, R.layout.blueos_media_widget_large_outline, true);
     }
 
-    private static void updateVariant(Context app, AppWidgetManager wm, Class<?> cls, int layoutId) {
+    private static void updateVariant(Context app, AppWidgetManager wm, Class<?> cls, int layoutId, boolean isOutline) {
         ComponentName provider = new ComponentName(app, cls);
         int[] ids = wm.getAppWidgetIds(provider);
         if (ids == null || ids.length == 0) return;
@@ -338,9 +364,9 @@ public abstract class BlueOSMediaWidgetProvider extends AppWidgetProvider {
             int playIcon = playing ? R.drawable.blueos_ic_pause : R.drawable.blueos_ic_play;
             rv.setImageViewResource(R.id.blueos_media_play_pause, playIcon);
 
-            rv.setOnClickPendingIntent(R.id.blueos_media_play_pause, makeAction(app, ACTION_PLAY_PAUSE, 10));
-            rv.setOnClickPendingIntent(R.id.blueos_media_previous, makeAction(app, ACTION_PREVIOUS, 11));
-            rv.setOnClickPendingIntent(R.id.blueos_media_next, makeAction(app, ACTION_NEXT, 12));
+            rv.setOnClickPendingIntent(R.id.blueos_media_play_pause, makeAction(app, ACTION_PLAY_PAUSE, id * 10 + 1));
+            rv.setOnClickPendingIntent(R.id.blueos_media_previous, makeAction(app, ACTION_PREVIOUS, id * 10 + 2));
+            rv.setOnClickPendingIntent(R.id.blueos_media_next, makeAction(app, ACTION_NEXT, id * 10 + 3));
 
             // Background tap: open music app or notification settings
             PendingIntent clickIntent = null;
@@ -350,18 +376,18 @@ public abstract class BlueOSMediaWidgetProvider extends AppWidgetProvider {
                 Intent launch = app.getPackageManager().getLaunchIntentForPackage(sNotifPackage);
                 if (launch != null) {
                     launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    clickIntent = PendingIntent.getActivity(app, 15, launch, PendingIntent.FLAG_IMMUTABLE);
+                    clickIntent = PendingIntent.getActivity(app, id * 10 + 4, launch, PendingIntent.FLAG_IMMUTABLE);
                 }
             }
 
             if (clickIntent == null) {
                 Intent mainAct = new Intent(app, MainActivity.class);
                 mainAct.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                clickIntent = PendingIntent.getActivity(app, 16, mainAct, PendingIntent.FLAG_IMMUTABLE);
+                clickIntent = PendingIntent.getActivity(app, id * 10 + 5, mainAct, PendingIntent.FLAG_IMMUTABLE);
             }
             rv.setOnClickPendingIntent(android.R.id.background, clickIntent);
 
-            WidgetThemeManager.applyBackground(app, rv);
+            WidgetThemeManager.applyBackground(app, rv, isOutline);
             wm.updateAppWidget(id, rv);
         }
 
@@ -427,10 +453,24 @@ public abstract class BlueOSMediaWidgetProvider extends AppWidgetProvider {
         }
     }
 
+    public static class SmallOutline extends BlueOSMediaWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_media_widget_small_outline;
+        }
+    }
+
     public static class Square extends BlueOSMediaWidgetProvider {
         @Override
         protected int getLayoutId() {
             return R.layout.blueos_media_widget_square;
+        }
+    }
+
+    public static class SquareOutline extends BlueOSMediaWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_media_widget_square_outline;
         }
     }
 
@@ -441,10 +481,24 @@ public abstract class BlueOSMediaWidgetProvider extends AppWidgetProvider {
         }
     }
 
+    public static class WideOutline extends BlueOSMediaWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_media_widget_wide_outline;
+        }
+    }
+
     public static class Large extends BlueOSMediaWidgetProvider {
         @Override
         protected int getLayoutId() {
             return R.layout.blueos_media_widget_large;
+        }
+    }
+
+    public static class LargeOutline extends BlueOSMediaWidgetProvider {
+        @Override
+        protected int getLayoutId() {
+            return R.layout.blueos_media_widget_large_outline;
         }
     }
 
